@@ -1,14 +1,12 @@
-// src/app/info/page.tsx
 import Menu from '@/components/Menu/MenuServer';
 import { hygraph } from '@/lib/hygraph';
 import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-import remarkBreaks from 'remark-breaks';
-import { INFO_PAGE_QUERY, type Info, getAllExternalLinks } from '@/lib/queries/info';
+import Footer from '@/components/Footer/Footer';
+import { INFO_PAGE_QUERY, type Info, type ExternalLink } from '@/lib/queries/info';
 
 export default async function Page() {
   const { infos } = await hygraph.request<{ infos: Info[] }>(INFO_PAGE_QUERY);
-  const info = infos?.[0] ?? null;
+  const info = infos?.[0];
 
   if (!info) {
     return (
@@ -19,23 +17,45 @@ export default async function Page() {
     );
   }
 
-  const links = getAllExternalLinks(info);
+  const links1 = (info.linksList ?? []).filter(
+    (x): x is ExternalLink => x?.__typename === 'ExternalLink'
+  );
+  const links2 = (info.linksList2 ?? []).filter(
+    (x): x is ExternalLink => x?.__typename === 'ExternalLink'
+  );
 
   return (
     <div>
-      <main>
-        <Menu />
-        <div style={{ position: 'absolute', top: '200px', display: 'flex' }}>
-          <div style={{ paddingLeft: 15, width: '33.33%' }}>
-            <ReactMarkdown remarkPlugins={[remarkGfm, remarkBreaks]}>
-              {info.infoText?.markdown ?? ''}
-            </ReactMarkdown>
+      <Menu />
+      <main className="infoContent">
+        <div className="blockInfo">
+          <div className="textInfo">
+            <ReactMarkdown>{info.infoText?.markdown ?? ''}</ReactMarkdown>
           </div>
 
-          <div style={{ marginLeft: 'calc(16.66% + 30px)' }}>
-            {links.length > 0 && (
+          <div className="infoLink">
+            <div style={{ marginBottom: 12 }}>link</div>
+            {links1.length > 0 && (
               <ul>
-                {links.map((l) => (
+                {links1.map((l) => (
+                  <li key={l.id}>
+                    <a
+                      href={l.link}
+                      className="infoLinkVoice"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {l.title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
+
+            <div style={{ marginTop: 24, marginBottom: 12 }}>link2</div>
+            {links2.length > 0 && (
+              <ul>
+                {links2.map((l) => (
                   <li key={l.id}>
                     <a
                       href={l.link}
@@ -51,6 +71,8 @@ export default async function Page() {
             )}
           </div>
         </div>
+
+        <Footer />
       </main>
     </div>
   );
