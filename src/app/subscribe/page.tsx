@@ -14,7 +14,7 @@ export default async function Page() {
   if (!subscribe) {
     return (
       <main style={{ padding: '2rem' }}>
-        <h1>Nessun contenuto "Info" trovato</h1>
+        <h1>Nessun contenuto &quot;Info&quot; trovato</h1>
         <p>Pubblica un record o controlla gli API ID (model/campi).</p>
       </main>
     );

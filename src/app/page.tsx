@@ -10,7 +10,7 @@ export default async function Page() {
   if (!home) {
     return (
       <main style={{ padding: '2rem' }}>
-        <h1>Nessun contenuto "Home Page" trovato</h1>
+        <h1>Nessun contenuto &quot;Homepage&quot; trovato</h1>
         <p>Pubblica un record o controlla gli API ID (model/campi).</p>
       </main>
     );

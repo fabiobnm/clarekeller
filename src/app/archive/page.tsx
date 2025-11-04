@@ -1,6 +1,5 @@
 import Menu from '@/components/Menu/MenuServer';
 import { hygraph } from '@/lib/hygraph';
-import ReactMarkdown from 'react-markdown';
 import { INFO_PAGE_QUERY, type Info } from '@/lib/queries/info';
 
 
@@ -12,7 +11,7 @@ export default async function Page() {
   if (!info) {
     return (
       <main style={{ padding: '2rem' }}>
-        <h1>Nessun contenuto "Info" trovato</h1>
+        <h1>Nessun contenuto &quot;Info&quot; trovato</h1>
         <p>Pubblica un record o controlla gli API ID (model/campi).</p>
       </main>
     );
