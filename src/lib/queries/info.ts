@@ -1,6 +1,8 @@
 // Query + tipi per il modello "INFO"
 export type Info = {
   infoText?: { markdown: string | null } | null;
+  links: string;
+  link2: string;
 };
 
 export const INFO_PAGE_QUERY = /* GraphQL */ `
