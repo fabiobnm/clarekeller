@@ -16,8 +16,7 @@ export default async function Page() {
     );
   }
 
-  // Tipizza le immagini per evitare "never" e l'errore su .id
-  const imgs = (home.images ?? []) as Array<{ url: string; id?: string | null }>;
+  const imgs = home.images ?? [];
 
   return (
     <div className={styles.page}>
@@ -39,7 +38,7 @@ export default async function Page() {
               <div className="carouselTrack">
                 {/* 1ª sequenza */}
                 {imgs.map((img, i) => (
-                  <div className="carouselItem" key={`${img.id ?? img.url}-${i}`}>
+                  <div className="carouselItem" key={img.id ?? `${img.url}-${i}`}>
                     <img
                       src={img.url}
                       className="imgHomeNew"
@@ -50,7 +49,7 @@ export default async function Page() {
                 ))}
                 {/* 2ª sequenza (duplicato) */}
                 {imgs.map((img, i) => (
-                  <div className="carouselItem" key={`dup-${img.id ?? img.url}-${i}`}>
+                  <div className="carouselItem" key={`dup-${img.id ?? `${img.url}-${i}`}`}>
                     <img
                       src={img.url}
                       className="imgHomeNew"

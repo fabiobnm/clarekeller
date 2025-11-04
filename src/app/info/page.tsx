@@ -1,8 +1,11 @@
 import Menu from '@/components/Menu/MenuServer';
 import { hygraph } from '@/lib/hygraph';
 import ReactMarkdown from 'react-markdown';
+import { INFO_PAGE_QUERY, type Info } from '@/lib/queries/info';
 import Footer from '@/components/Footer/Footer';
-import { INFO_PAGE_QUERY, type Info, type ExternalLink } from '@/lib/queries/info';
+
+
+
 
 export default async function Page() {
   const { infos } = await hygraph.request<{ infos: Info[] }>(INFO_PAGE_QUERY);
@@ -17,63 +20,33 @@ export default async function Page() {
     );
   }
 
-  const links1 = (info.linksList ?? []).filter(
-    (x): x is ExternalLink => x?.__typename === 'ExternalLink'
-  );
-  const links2 = (info.linksList2 ?? []).filter(
-    (x): x is ExternalLink => x?.__typename === 'ExternalLink'
-  );
-
   return (
     <div>
-      <Menu />
-      <main className="infoContent">
-        <div className="blockInfo">
-          <div className="textInfo">
-            <ReactMarkdown>{info.infoText?.markdown ?? ''}</ReactMarkdown>
-          </div>
+        <Menu/>
+      <main className='infoContent'>
+       
+       <div className='blockInfo'>
+        <div className='textInfo'>
+  <ReactMarkdown>{info.infoText?.markdown ?? ''}</ReactMarkdown>
+</div>
 
-          <div className="infoLink">
-            <div style={{ marginBottom: 12 }}>link</div>
-            {links1.length > 0 && (
-              <ul>
-                {links1.map((l) => (
-                  <li key={l.id}>
-                    <a
-                      href={l.link}
-                      className="infoLinkVoice"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {l.title}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            )}
+    <div className='infoLink'>
+      link
+      <div>
+        <br />
+ 
+</div>
+<br />
+    link2
+      <div>
+        <br />
 
-            <div style={{ marginTop: 24, marginBottom: 12 }}>link2</div>
-            {links2.length > 0 && (
-              <ul>
-                {links2.map((l) => (
-                  <li key={l.id}>
-                    <a
-                      href={l.link}
-                      className="infoLinkVoice"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {l.title}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-        </div>
-
-        <Footer />
+</div>
+    </div>
+      </div>
+<Footer/>
       </main>
+     
     </div>
   );
 }
