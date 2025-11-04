@@ -1,0 +1,310 @@
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: white;
+    --foreground: black;
+  }
+}
+
+@font-face {
+  font-family: "Ufficio600";
+  src:
+    url("/fonts/Ufficio-600.woff2") format("woff2"), /* se ce l'hai */
+    url("/fonts/Ufficio-600.woff") format("woff");   /* il tuo file */
+  font-style: normal;
+  font-display: swap;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  font-family: 'Ufficio600';
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.FabioMenu {
+  position: relative;
+  display: flex;
+  top: -2.4vw;
+  transition: top 0.3s ease;
+}
+.FabioMenuMobile {
+  position: relative;
+  display: flex;
+  top: 0vw;
+  transition: top 0.3s ease;
+}
+
+.socials{
+  transition: .3s;
+  transition-delay: .6s;
+}
+.infoContent{
+    position: absolute;
+    top: 200px;
+    display: block;
+}
+
+.infoLink{
+    margin-left: calc(16.66% + 30px);
+}
+.infoLinkVoice{
+  opacity: 1;
+  transition: .2s all;
+}
+.infoLinkVoice:hover{
+opacity: .2;
+transition: .2s all;
+}
+
+.divMenu{
+  width: 16.66%;
+}
+.divMenuRight{
+  position: absolute;
+  right: 15px;
+}
+
+.divMenu a{
+  margin-left: 15px;
+}
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+}
+.blockInfo{
+  display: flex;
+}
+.textInfo{
+    bottom: 15px;
+    left: 0;
+    right: 0;
+    padding-left: 15px;
+    width: 33.33%;
+    white-space: pre-wrap;
+}
+
+.logoMenu{
+  padding-inline: 15px;
+  padding-top: 10px;
+}
+
+.imgHomeNew{
+  width: 100%;
+  height: 100%;
+transition: .8s all;
+object-fit: cover;
+}
+
+
+.imgHomeNewNew{
+  object-fit: cover;
+  transition: .8s height;
+  width: 100%;
+}
+.gridImagesHome{
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 15px;
+  margin-top: 10px;
+  width:100%
+}
+
+.gridImagesHomeNew{
+  display: flex;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 15px;
+  margin-top: 10px;
+  
+}
+.gridImagesHome{
+  display: flex;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 15px;
+  margin-top: 10px;
+  width: max-content;
+  align-items: end; 
+}
+
+/* garantisce che l’immagine dentro alla cella stia al fondo */
+.gridImagesHome > div{
+  display: flex;
+  align-items: flex-end;
+  width: 16.66vW;
+  height: 40vH;
+  transition: .8s all;
+}
+
+
+.gridImagesHome > div:hover{
+transition: .8s all;
+width: 30vW;
+height: 50vH;
+z-index: 99;
+
+}
+
+/* ===== Bottom bar + carousel ===== */
+.Carousel {
+  position: fixed;
+  bottom: 15px;
+  left: 0;
+  right: 0;
+  padding-inline: 15px;
+  width: 100vw;
+  overflow: hidden; /* niente scrollbar visibile */
+  z-index: 10;
+}
+
+.Carousel .socials {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 8px;
+}
+
+.Carousel .socials .copy {
+  position: absolute;
+  right: 0px;
+}
+
+/* Viewport del carousel: nasconde overflow */
+.carouselViewport {
+  width: 100%;
+  overflow: hidden;            /* importante: nasconde lo scorrimento */
+  -ms-overflow-style: none;    /* IE/Edge */
+  scrollbar-width: none;       /* Firefox */
+  overflow-x: scroll;
+}
+.carouselViewport::-webkit-scrollbar { display: none; } /* WebKit */
+
+/* Traccia che scorre (contiene DUE sequenze identiche) */
+.carouselTrack {
+  display: flex;
+  gap: 15px;
+  width: max-content;
+  align-items: end;
+  animation: marquee 60s linear infinite; /* velocità: regola qui */
+  will-change: transform;
+}
+
+/* Ogni item: base 16.66vw, allineato in basso; cresce in hover come volevi */
+.carouselItem {
+  display: flex;
+  align-items: flex-end;
+  width: calc(16.66vw - 15px);
+  height: 42vh;
+  transition: .6s all;
+  flex: 0 0 auto; /* non comprimere */
+}
+
+.carouselItem:hover {
+  
+  height: calc(42vH * 1.5);
+  width:calc(calc(16.66vw - 15px) * 1.5);
+  z-index: 99;
+  transition: .6s all;
+}
+
+/* Immagine dentro l'item */
+.imgHomeNew{
+  width: 100%;
+  height: 100%;
+  transition: .8s all;
+  object-fit: cover;
+  object-position: bottom;
+   /* evita salto quando hover mette il bordo */
+  box-sizing: border-box;
+}
+
+.Carousel:hover .socials {
+  opacity:0;
+  transition: 0s;
+    transition-delay: 0s;
+
+}
+
+/* Marquee infinita: la track contiene due copie, quindi -50% completa 1 ciclo */
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* (opzionale) Pausa animazione su hover del viewport */
+.carouselViewport:hover .carouselTrack {
+  /*animation-play-state: paused;*/
+}
+
+@media (max-width: 600px) {
+ .FabioMenu {
+  position: relative;
+  display: block;
+  top: 4vw;
+  transition: top 0.3s ease;
+}
+.divMenuRight{
+  position: relative;
+  right: auto;
+  left: 15px;
+}
+
+.divMenuRight span{
+  margin-left: 0;
+}
+
+.carouselItem{
+  width: 80vW;
+}
+
+.carouselItem:hover {
+  
+  height: calc(auto * 1.5);
+  width:calc(calc(80vw) * 1.5);
+  z-index: 99;
+  transition: .6s all;
+}
+.infoContent{
+    position: absolute;
+    top: 305px;
+    display: block;
+}
+.blockInfo{
+  display: block;
+}
+.textInfo{
+       bottom: 15px;
+    left: 0;
+    right: 0;
+    padding-left: 15px;
+    width: calc(100% - 30px);
+    white-space: pre-wrap;
+}
+
+.infoLink{
+  margin-top: 100px;
+    margin-left:15px;
+}
+}
