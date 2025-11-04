@@ -8,7 +8,7 @@ import Footer from '@/components/Footer/Footer';
 
 
 export default async function Page() {
-  const { subscribes } = await hygraph.request<{ infos: Subscribe[] }>(SUBSCRIBE_PAGE_QUERY);
+  const { subscribes } = await hygraph.request<{ subscribes: Subscribe[] }>(SUBSCRIBE_PAGE_QUERY);
   const subscribe = subscribes?.[0];
 
   if (!subscribe) {

@@ -1,6 +1,6 @@
 // Query + tipi per il modello "SUBSCRIBE"
 export type Subscribe = {
-  Text?: { markdown: string | null } | null;
+  text?: { markdown: string | null } | null;
 };
 
 export const SUBSCRIBE_PAGE_QUERY = /* GraphQL */ `
