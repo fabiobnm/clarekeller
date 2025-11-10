@@ -1,26 +1,32 @@
-// Query + tipi per il modello "INFO"
+export type ExternalLink = {
+  __typename: 'ExternalLink';
+  id: string;
+  title: string;
+  link: string;
+};
+
 export type Info = {
+  id: string;
   infoText?: { markdown: string | null } | null;
-  links: string;
-  link2: string;
+  links?: string | null;   // opzionale: campo scalar
+  link2?: string | null;   // opzionale: campo scalar
+  linksList?: ExternalLink[] | null;   // alias array
+  linksList2?: ExternalLink[] | null;  // alias array
 };
 
 export const INFO_PAGE_QUERY = /* GraphQL */ `
- query info {
+  query InfoPage {
     infos(first: 1, orderBy: updatedAt_DESC) {
-    infoText{markdown}
-    links{
-  ... on ExternalLink {
-    title
-    link
-     id
-  }}
-      link2{
-  ... on ExternalLink {
-    title
-    link
-     id
-  }}
+      id
+      infoText { markdown }
+      linksList: links {
+        __typename
+        ... on ExternalLink { id title link }
+      }
+      linksList2: link2 {
+        __typename
+        ... on ExternalLink { id title link }
+      }
     }
   }
 `;
