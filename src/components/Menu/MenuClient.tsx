@@ -136,7 +136,7 @@ export default function MenuClient({
             <NavItem href="/info">INFO</NavItem>
           </div>
           <div className="divMenu">
-            <NavItem href="/shop">SHOP</NavItem>
+            <NavItem href="https://cwkshop-2.myshopify.com/">SHOP</NavItem>
           </div>
           <div className="divMenu">
             <NavItem href="/archive">ARCHIVE</NavItem>
