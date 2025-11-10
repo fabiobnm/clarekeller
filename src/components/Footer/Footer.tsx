@@ -15,8 +15,8 @@ export default async function MenuServer({ page = 'default', itemBasis = '16.66%
 
   return (
     <div>
-<img style={{paddingInline:'15px', marginTop:'80px'}} src={home.logoDesktop?.url} alt="" />
-  <div style={{ position:'relative',bottom:15,paddingInline:15,}}>
+<img className='logoFooter' src={home.logoDesktop?.url}  />
+  <div style={{ position:'relative',bottom:'1vW',paddingInline:15,}}>
        <a style={{marginRight:'10px'}} href={home.instagram}>INSTAGRAM</a>
        <a style={{marginRight:'10px'}} href={home.threads}>THREADS</a>
        <a style={{marginRight:'10px'}} href={home.x}>X</a>

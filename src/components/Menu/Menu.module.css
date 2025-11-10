@@ -25,7 +25,7 @@
 
 /* Logo */
 .logo { display: block; object-fit: contain; }
-.logoDesktop { height: auto; max-height: 200px;padding-inline: 15px;}
+.logoDesktop { height: auto;padding-inline: 15px;}
 .logoMobile  { height: 4vW; margin-inline: 15px;margin-bottom: 10px;}
 
 /* Menu container: default (home) */
@@ -34,6 +34,7 @@
   display: flex;
   top: -2.4vw;
   transition: top 0.3s ease;
+  box-shadow: 0px 1px 1px transparent;
 }
 
 /* Quando NON siamo in home, porta top a 0 */
@@ -49,7 +50,7 @@
 .navLink:hover {
   
   opacity: 1;
-  transition: opacity .2s ease;
+  transition:   .2s ease;
 }
 
 /* Link attivo (pagina corrente) */

@@ -131,7 +131,7 @@ export default function MenuClient({
           )
         )}
 
-        <div className={styles.FabioMenu}>
+        <div className={styles.FabioMenu} >
           <div className="divMenu">
             <NavItem href="/info">INFO</NavItem>
           </div>

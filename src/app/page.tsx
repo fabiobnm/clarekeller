@@ -24,12 +24,12 @@ export default async function Page() {
         <Menu />
 
         {/* Barra fissa in basso con link + carousel */}
-        <div className="Carousel">
+        <div className="Carousel slide-in-top">
           <div className="socials">
             <a style={{ marginRight: '10px' }} href={home.instagram}>INSTAGRAM</a>
             <a style={{ marginRight: '10px' }} href={home.threads}>THREADS</a>
             <a style={{ marginRight: '10px' }} href={home.x}>X</a>
-            <a className="copy">{home.copyright}</a>
+            <p className="copy">{home.copyright}</p>
           </div>
 
           {/* CAROUSEL: traccia duplicata per loop infinito */}

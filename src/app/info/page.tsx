@@ -23,7 +23,7 @@ export default async function Page() {
   return (
     <div>
         <Menu/>
-      <main className='infoContent'>
+      <main className='infoContent slide-in-top' > 
        
        <div className='blockInfo'>
         <div className='textInfo'>
@@ -34,13 +34,33 @@ export default async function Page() {
       link
       <div>
         <br />
- 
+  {info.links?.length ? (
+    <ul>
+      {info.links.map((l) => (
+        <div key={l.id}>
+          <a href={l.link} className='infoLinkVoice' target="_blank" rel="noopener noreferrer">
+            {l.title}
+          </a>
+        </div>
+      ))}
+    </ul>
+  ) : null}
 </div>
 <br />
     link2
       <div>
         <br />
-
+  {info.link2?.length ? (
+    <ul>
+      {info.link2.map((l) => (
+        <div key={l.id}>
+          <a href={l.link} className='infoLinkVoice' target="_blank" rel="noopener noreferrer">
+            {l.title}
+          </a>
+        </div>
+      ))}
+    </ul>
+  ) : null}
 </div>
     </div>
       </div>
