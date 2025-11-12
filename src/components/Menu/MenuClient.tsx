@@ -47,7 +47,7 @@ export default function MenuClient({
     setExit(true);
     setTimeout(() => {
       router.push(href);
-    }, 200);
+    }, 2000);
   };
 
   const isHome = pathname === '/';
