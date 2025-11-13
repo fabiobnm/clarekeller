@@ -10,7 +10,7 @@
   will-change: transform;
 }
 .enter { transform: translateY(0); }
-.exit  { transform: translateY(-100%); }
+.exit  { transform: translateY(-110%); }
 
 /* Nudge: muove tutto il contenuto del menu (logo + voci) */
 .nudge {

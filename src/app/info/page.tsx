@@ -45,7 +45,7 @@ export default async function Page() {
             {links1.length > 0 && (
               <ul>
                 {links1.map((l) => (
-                  <li key={l.id}>
+                  <div key={l.id}>
                     <a
                       href={l.link}
                       className="infoLinkVoice"
@@ -54,7 +54,7 @@ export default async function Page() {
                     >
                       {l.title}
                     </a>
-                  </li>
+                  </div>
                 ))}
               </ul>
             )}
@@ -63,7 +63,7 @@ export default async function Page() {
             {links2.length > 0 && (
               <ul>
                 {links2.map((l) => (
-                  <li key={l.id}>
+                  <div key={l.id}>
                     <a
                       href={l.link}
                       className="infoLinkVoice"
@@ -72,7 +72,7 @@ export default async function Page() {
                     >
                       {l.title}
                     </a>
-                  </li>
+                  </div>
                 ))}
               </ul>
             )}
