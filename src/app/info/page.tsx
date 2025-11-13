@@ -41,7 +41,7 @@ export default async function Page() {
           </div>
 
           <div className="infoLink">
-            <div style={{ marginBottom: 12 }}>link</div>
+            <div style={{ marginBottom: 12 }}>Links Title</div>
             {links1.length > 0 && (
               <ul>
                 {links1.map((l) => (
@@ -59,7 +59,7 @@ export default async function Page() {
               </ul>
             )}
 
-            <div style={{ marginTop: 24, marginBottom: 12 }}>link2</div>
+            <div style={{ marginTop: 24, marginBottom: 12 }}>Links Title</div>
             {links2.length > 0 && (
               <ul>
                 {links2.map((l) => (
