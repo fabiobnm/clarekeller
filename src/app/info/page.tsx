@@ -35,7 +35,7 @@ export default async function Page() {
     <div>
       <Menu />
       <main className="infoContent">
-        <div className="blockInfo">
+        <div className="blockInfo animationOpacity">
           <div className="textInfo">
             <ReactMarkdown>{info.infoText?.markdown ?? ''}</ReactMarkdown>
           </div>

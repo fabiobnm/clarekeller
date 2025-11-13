@@ -22,7 +22,7 @@ export default async function Page() {
     <div>
       <main >
        <Menu/>
-       <div style={{position:'absolute', top:'200px', display:'flex'}}>
+       <div  className='animationOpacity' style={{position:'absolute', top:'200px', display:'flex'}}>
         <div style={{  bottom:15, left:0, right:0, paddingLeft:15 , width:'33.33%'}}>
 archive
 </div>
