@@ -76,6 +76,7 @@ transform: translateY(120%); /* fuori sopra + centrato */
 }
 
 .socials{
+  font-size: .7em;
   transition: .3s;
   transition-delay: .6s;
 }
@@ -341,3 +342,25 @@ z-index: 99;
 }
 }
 
+
+/* Stato base: tutte visibili */
+.Carousel .socials a {
+  opacity: 1;
+  transition: opacity .2s ease;
+}
+
+/* Quando stai hoverando QUALSIASI link dentro .socials,
+   abbassa tutte... */
+.Carousel .socials:has(a:hover) a {
+  opacity: .2;
+}
+
+/* ...tranne il link realmente hoverato */
+.Carousel .socials:has(a:hover) a:hover {
+  opacity: 1;
+}
+
+/* Non toccare il copyright */
+.Carousel .socials .copy {
+  opacity: 1;
+}

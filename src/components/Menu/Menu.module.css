@@ -95,3 +95,15 @@
   transition: top 0.3s ease;
 }
 }
+
+/* Base: in home tutte le voci a 1 */
+.isHome .navLink { opacity: 1; transition: opacity .2s ease; }
+
+/* Quando una (qualunque) voce è hoverata, abbassa tutte a .2... */
+.isHome .FabioMenu:has(.navLink:hover) .navLink { opacity: .2; }
+
+/* ...tranne quella davvero hoverata che resta 1 */
+.isHome .FabioMenu:has(.navLink:hover) .navLink:hover { opacity: 1; }
+
+/* Mantieni la voce attiva sempre a 1 */
+.active { opacity: 1; pointer-events: none; }
