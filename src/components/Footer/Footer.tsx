@@ -13,9 +13,11 @@ export default async function MenuServer({ page = 'default', itemBasis = '16.66%
   const { homePages } = await hygraph.request<{ homePages: HomePage[] }>(HOME_PAGES_QUERY);
   const home = homePages?.[0] || null;
 
+    const logoUrl = home?.logoDesktop?.url ?? undefined;
+  
   return (
     <div>
-<img className='logoFooter'  />
+<img className='logoFooter' src={logoUrl}  />
   <div style={{ position:'relative',bottom:'1vW',paddingInline:15}}>
        <a style={{marginRight:'10px'}} href={home.instagram}>INSTAGRAM</a>
        <a style={{marginRight:'10px'}} href={home.threads}>THREADS</a>

@@ -10,7 +10,7 @@
   will-change: transform;
 }
 .enter { transform: translateY(0); }
-.exit  { transform: translateY(-110%); }
+.exit  { transform: translateY(-100%); }
 
 /* Nudge: muove tutto il contenuto del menu (logo + voci) */
 .nudge {
@@ -97,7 +97,7 @@
 }
 
 /* Base: in home tutte le voci a 1 */
-.isHome .navLink { opacity: 1; transition: opacity .2s ease; }
+.isHome .navLink { opacity: 1; transition: opacity .4s ease; }
 
 /* Quando una (qualunque) voce è hoverata, abbassa tutte a .2... */
 .isHome .FabioMenu:has(.navLink:hover) .navLink { opacity: .2; }

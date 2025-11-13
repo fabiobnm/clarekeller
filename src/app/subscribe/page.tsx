@@ -25,7 +25,7 @@ export default async function Page() {
     <div>
       <main >
        <Menu/>
-       <div style={{position:'absolute', top:'200px', display:'flex'}}>
+       <div style={{position:'absolute', top:'200px', display:'flex', marginTop:'85px'}}>
 
 
     <div style={{marginLeft:'0', textAlign:'center', width:'100vW', paddingInline: 'calc(16.66% + 15px)'}}>
