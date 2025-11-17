@@ -2,7 +2,6 @@ import Menu from '@/components/Menu/MenuServer';
 import { hygraph } from '@/lib/hygraph';
 import ReactMarkdown from 'react-markdown';
 import { SUBSCRIBE_PAGE_QUERY, type Subscribe } from '@/lib/queries/subscribe';
-import Footer from '@/components/Footer/Footer';
 import NewsletterForm from '@/components/NewsletterForm/NewsletterForm';
 
 
