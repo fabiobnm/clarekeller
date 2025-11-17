@@ -1,5 +1,58 @@
 // src/lib/mailerlite.ts
+
 const ML_ENDPOINT = 'https://connect.mailerlite.com/api/subscribers';
+
+export type MailerLiteSuccess = {
+  id?: string;
+  email?: string;
+  status?: string;
+  // ...altri campi che MailerLite può restituire
+};
+
+export type MailerLiteErrorItem = {
+  code?: string;
+  message?: string;
+  field?: string;
+};
+
+export type MailerLiteError = {
+  error?: { message?: string };
+  errors?: MailerLiteErrorItem[];
+};
+
+function isRecord(v: unknown): v is Record<string, unknown> {
+  return typeof v === 'object' && v !== null;
+}
+
+function isMailerLiteError(data: unknown): data is MailerLiteError {
+  if (!isRecord(data)) return false;
+  const hasError =
+    'error' in data &&
+    isRecord((data as Record<string, unknown>).error ?? null);
+
+  const hasErrorsArray =
+    'errors' in data &&
+    Array.isArray((data as Record<string, unknown>).errors);
+  return Boolean(hasError || hasErrorsArray);
+}
+
+function extractMailerLiteErrorMessage(data: unknown, fallback = 'MAILERLITE_ERROR'): string {
+  if (!isMailerLiteError(data)) return fallback;
+
+  const d = data as MailerLiteError;
+
+  if (d.error?.message) return d.error.message;
+
+  if (Array.isArray(d.errors) && d.errors.length > 0) {
+    // filtra messaggi definiti e unisci
+    const msgs = d.errors
+      .map((it) => it?.message)
+      .filter((m): m is string => typeof m === 'string' && m.length > 0);
+    if (msgs.length > 0) return msgs.join(', ');
+  }
+
+  return fallback;
+}
 
 export function getMailerLiteConfig() {
   const apiKey = process.env.MAILERLITE_API_KEY ?? '';
@@ -10,13 +63,16 @@ export function getMailerLiteConfig() {
   return { apiKey, groupId, endpoint: ML_ENDPOINT };
 }
 
-export async function subscribeToMailerLite(params: { email: string; name?: string }) {
+export async function subscribeToMailerLite(params: { email: string; name?: string }): Promise<MailerLiteSuccess> {
   const { apiKey, groupId, endpoint } = getMailerLiteConfig();
-  const payload = {
+
+  const payload: Record<string, unknown> = {
     email: params.email,
-    fields: params.name ? { name: params.name } : undefined,
     groups: [groupId],
   };
+  if (params.name && params.name.trim() !== '') {
+    payload.fields = { name: params.name };
+  }
 
   const res = await fetch(endpoint, {
     method: 'POST',
@@ -29,12 +85,19 @@ export async function subscribeToMailerLite(params: { email: string; name?: stri
     cache: 'no-store',
   });
 
-  const data = await res.json().catch(() => ({}));
-  if (!res.ok) {
-    const msg =
-      data?.error?.message ||
-      (Array.isArray(data?.errors) ? data.errors.map((e: any) => e?.message).join(', ') : 'MAILERLITE_ERROR');
-    throw new Error(msg);
+  let data: unknown = null;
+  try {
+    data = await res.json();
+  } catch {
+    // lascialo null/unknown: gestiamo sotto
   }
-  return data;
+
+  if (!res.ok) {
+    const msg = extractMailerLiteErrorMessage(data, res.statusText || 'MAILERLITE_ERROR');
+    throw new Error(msg);
+  }  
+
+  return (data ?? {}) as MailerLiteSuccess;
 }
+
+
