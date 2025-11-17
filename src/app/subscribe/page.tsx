@@ -3,6 +3,8 @@ import { hygraph } from '@/lib/hygraph';
 import ReactMarkdown from 'react-markdown';
 import { SUBSCRIBE_PAGE_QUERY, type Subscribe } from '@/lib/queries/subscribe';
 import Footer from '@/components/Footer/Footer';
+import NewsletterForm from '@/components/NewsletterForm/NewsletterForm';
+
 
 
 
@@ -31,6 +33,7 @@ export default async function Page() {
     <div style={{marginLeft:'0', textAlign:'center', width:'100vW', paddingInline: 'calc(16.66% + 15px)'}}>
         <ReactMarkdown>{subscribe.text?.markdown ?? ''}</ReactMarkdown>
       
+        <NewsletterForm />
     </div>
       </div>
 
