@@ -52,7 +52,7 @@ export default function NewsletterForm() {
         Email Address*
         <input
           type="email"
-          className="inputFormSubs"
+          className="inputFormSubs no-zoom"
           required
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -66,7 +66,7 @@ export default function NewsletterForm() {
         Name*
         <input
           type="text"
-          className="inputFormSubs"
+          className="inputFormSubs no-zoom"
           value={name}
           onChange={(e) => setName(e.target.value)}
           autoComplete="name"
@@ -79,7 +79,7 @@ export default function NewsletterForm() {
         City*
         <input
           type="text"
-          className="inputFormSubs"
+          className="inputFormSubs no-zoom"
           value={city}
           onChange={(e) => setCity(e.target.value)}
           autoComplete="city"

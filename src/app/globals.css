@@ -27,6 +27,9 @@ body {
   font-family: 'Ufficio600';
 }
 
+
+
+
 body {
   color: var(--foreground);
   background: var(--background);
@@ -440,6 +443,14 @@ text-align: center;
   z-index: 99;
   transition: .6s all;
 }
+
+.no-zoom {
+   
+    transform-origin: top left;
+
+       
+}
+
 .infoContent{
     position: absolute;
     top: 305px;
