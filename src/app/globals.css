@@ -294,7 +294,7 @@ z-index: 99;
   bottom: 15px;
   left: 0;
   right: 0;
-  padding-inline: 15px;
+  padding-inline: 0px;
   width: 100vw;
   overflow: hidden; /* niente scrollbar visibile */
   z-index: 10;
@@ -306,11 +306,13 @@ z-index: 99;
   align-items: center;
   gap: 10px;
   padding-bottom: 8px;
+  padding-left: 15px;
 }
 
 .Carousel .socials .copy {
   position: absolute;
-  right: 0px;
+  right: 15px;
+
 }
 
 /* Viewport del carousel: nasconde overflow */
