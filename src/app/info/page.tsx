@@ -78,8 +78,10 @@ export default async function Page() {
             )}
           </div>
         </div>
-
-        <Footer />
+        <div style={{marginTop:'100px'}}>
+          <Footer />
+        </div>
+        
       </main>
     </div>
   );
