@@ -5,6 +5,7 @@ import { useState, FormEvent } from 'react';
 export default function NewsletterForm() {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
+  const [city, setCity] = useState('');
   const [loading, setLoading] = useState(false);
   const [ok, setOk] = useState<boolean | null>(null);
   const [err, setErr] = useState<string | null>(null);
@@ -22,6 +23,7 @@ export default function NewsletterForm() {
         body: JSON.stringify({
           email,
           name,
+          city,
           // honeypot: campo hidden; lasciarlo vuoto in uso reale
           honeypot: (document.getElementById('company') as HTMLInputElement)?.value || ''
         }),
@@ -45,54 +47,64 @@ export default function NewsletterForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} style={{ display: 'grid', gap: 8, maxWidth: 420, marginInline:'auto' }}>
-      <label>
-        Email*
+    <form onSubmit={onSubmit} className='formSubscribe'>
+      <label className='labelInput'>
+        Email Address*
         <input
           type="email"
+          className="inputFormSubs"
           required
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="you@example.com"
           autoComplete="email"
           disabled={loading}
-          style={{ width: '100%', padding: '10px', border: '1px solid #000' }}
+          style={{ width: '100%', padding: '10px'}}
         />
       </label>
 
-      <label>
-        Nome
+      <label className='labelInput'>
+        Name*
         <input
           type="text"
+          className="inputFormSubs"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          placeholder="Nome (opzionale)"
           autoComplete="name"
           disabled={loading}
-          style={{ width: '100%', padding: '10px', border: '1px solid #000' }}
+          style={{ width: '100%', padding: '10px'}}
+        />
+      </label>
+
+      <label className='labelInput'>
+        City*
+        <input
+          type="text"
+          className="inputFormSubs"
+          value={city}
+          onChange={(e) => setCity(e.target.value)}
+          autoComplete="city"
+          disabled={loading}
+          style={{ width: '100%', padding: '10px'}}
         />
       </label>
 
       {/* Honeypot anti-bot (nascosto a vista/AT) */}
-      <div aria-hidden="true" style={{ position: 'absolute', left: '-9999px' }}>
+      <div aria-hidden="true" style={{ position: 'absolute', display:'none' }}>
         <label>
           Company
           <input id="company" name="company" type="text" tabIndex={-1} autoComplete="off" />
         </label>
       </div>
 
-      {/* GDPR/consenso (se serve per UE) */}
-      <label style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-        <input type="checkbox" required disabled={loading} />
-        <span>Acconsento a ricevere email (puoi disiscriverti in qualsiasi momento).</span>
-      </label>
+     
 
       <button
         type="submit"
+        className='submitFormSubs'
         disabled={loading}
-        style={{ padding: '12px 18px', border: '1px solid #000', background: 'red' }}
+       
       >
-        {loading ? 'Iscrizione…' : 'Iscriviti'}
+        {loading ? 'Iscrizione…' : 'Subscribe \u2192'}
       </button>
 
       {ok === true && <p style={{ color: 'green' }}>Controlla la tua email per confermare l’iscrizione.</p>}

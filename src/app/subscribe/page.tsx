@@ -3,6 +3,7 @@ import { hygraph } from '@/lib/hygraph';
 import ReactMarkdown from 'react-markdown';
 import { SUBSCRIBE_PAGE_QUERY, type Subscribe } from '@/lib/queries/subscribe';
 import NewsletterForm from '@/components/NewsletterForm/NewsletterForm';
+import Footer from '@/components/Footer/Footer';
 
 
 
@@ -25,15 +26,21 @@ export default async function Page() {
   return (
     <div>
       <main >
-       <Menu/>
-       <div className='animationOpacity' style={{position:'absolute', top:'200px', display:'flex', marginTop:'85px'}}>
+        <div>
+        <Menu/>
+
+        </div>
+       <div className='animationOpacity mainSubscribeDiv' >
 
 
-    <div style={{marginLeft:'0', textAlign:'center', width:'100vW', paddingInline: 'calc(16.66% + 15px)'}}>
-        <ReactMarkdown>{subscribe.text?.markdown ?? ''}</ReactMarkdown>
-      
-        <NewsletterForm />
-    </div>
+        <div className='subscribeBox' >
+          <ReactMarkdown>{subscribe.text?.markdown ?? ''}</ReactMarkdown>
+          <NewsletterForm />
+        </div>
+
+      </div>
+      <div className='footerSubs slide-in-topSUBSCRIBE'>
+        <Footer />
       </div>
 
       </main>

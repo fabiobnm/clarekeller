@@ -1,3 +1,4 @@
+// src/app/api/subscribe/route.ts
 import { NextResponse } from 'next/server';
 import { subscribeToMailerLite } from '@/lib/mailerlite';
 
@@ -7,20 +8,19 @@ function isEmail(s: string) {
 
 export async function POST(req: Request) {
   try {
-    const { email, name, honeypot } = await req.json();
+    const { email, name, city, honeypot } = await req.json();
 
-    // honeypot anti-bot
     if (honeypot && String(honeypot).trim() !== '') {
-      return NextResponse.json({ ok: true }); // ignora i bot
+      return NextResponse.json({ ok: true }); // bot ignorato
     }
-
     if (!email || !isEmail(email)) {
       return NextResponse.json({ ok: false, error: 'EMAIL_INVALID' }, { status: 400 });
     }
 
-    await subscribeToMailerLite({ email, name });
+    await subscribeToMailerLite({ email, name, city });
     return NextResponse.json({ ok: true });
-  } catch (err: any) {
-    return NextResponse.json({ ok: false, error: err?.message || 'UNEXPECTED' }, { status: 500 });
+  } catch (err: unknown) {
+    const msg = err instanceof Error ? err.message : 'UNEXPECTED';
+    return NextResponse.json({ ok: false, error: msg }, { status: 500 });
   }
 }

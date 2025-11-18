@@ -10,11 +10,12 @@
   }
 }
 
+ /* se ce l'hai */
 @font-face {
   font-family: "Ufficio600";
   src:
-    url("/fonts/Ufficio-600.woff2") format("woff2"), /* se ce l'hai */
-    url("/fonts/Ufficio-600.woff") format("woff");   /* il tuo file */
+    url("/fonts/Ufficio-500.woff2") format("woff2"), /* se ce l'hai */
+    url("/fonts/Ufficio-500.woff") format("woff");   /* il tuo file */
   font-style: normal;
   font-display: swap;
 }
@@ -32,6 +33,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+
 .FabioMenu {
   position: relative;
   display: flex;
@@ -45,9 +48,75 @@ body {
   transition: top 0.3s ease;
 }
 
+.subscribeBox{
+  margin-left: 0;
+    text-align: center;
+    width: 100vW;
+    padding-inline: calc(16.66% + 15px);
+}
+.formSubscribe{
+  display: grid;
+    gap: 8px;
+    max-width: none;
+    padding-inline: 16vw;
+    margin-inline: auto;
+    margin-top: 30px;
+}
+.inputFormSubs{
+  background-color: white;
+  border: none;
+  color: black;
+  border-bottom: 1px solid black;
+  padding-inline: 0 !important;
+  font-family: 'Ufficio600' !important;
+  text-align: center;
+
+}
+
+.footerSubs{
+  position: absolute;
+    bottom: 0px;
+    width: 100%;
+}
+
+
+.labelInput{
+    margin-top: 10px;
+}
+textarea:focus, input:focus{
+    outline: none;
+}
+
+input::placeholder{
+  color: black;
+  font-family: 'Ufficio600' !important;
+  text-align: center;
+}
+
+.submitFormSubs{
+    font-family: 'Ufficio600' !important;
+    padding: 2px 18px;
+    background: black;
+    color: white;
+    width: 100%;
+    border: none;
+    margin-top: 0px;
+    border-radius: 50px;
+    margin-left: auto;
+    text-align: right;
+    font-size: 17px;
+
+}
+
+.mainSubscribeDiv{
+  position: absolute;
+    display: flex;
+    top: 45%;
+    transform: translateY(-50%);
+}
+
 .logoFooter{
   padding-inline: 15px;
-  margin-top: 150px;
   position: relative;
   bottom: -15px;
 }
@@ -66,6 +135,12 @@ transition: .3s all;
   
 transform: translateY(120%); /* fuori sopra + centrato */
  animation: slideInTop .6s ease-out .5s forwards; /* durata .5s, delay .1s */
+}
+
+.slide-in-topSUBSCRIBE {
+  
+transform: translateY(120%); /* fuori sopra + centrato */
+ animation: slideInTop .6s ease-out .2s forwards; /* durata .5s, delay .1s */
 }
 
 @keyframes slideInTop {
@@ -305,6 +380,39 @@ z-index: 99;
 }
 
 @media (max-width: 600px) {
+
+  .formSubscribe{
+  display: grid;
+    gap: 8px;
+    max-width: none;
+    padding-inline: 0;
+    margin-inline: auto;
+    margin-top: 30px;
+}
+
+.footerSubs{
+display: none;
+}
+
+.subscribeBox{
+  margin-left: 0;
+    text-align: left;
+    width: 100vW;
+    padding-inline: 15px;
+}
+.subscribeBox .labelInput{
+text-align: center;
+}
+
+
+.mainSubscribeDiv {
+    position: absolute;
+    display: flex;
+    top: auto;
+    bottom: 15px;
+    transform: translateY(0%);
+}
+
  .FabioMenu {
   position: relative;
   display: block;
