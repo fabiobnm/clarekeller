@@ -64,7 +64,7 @@ export default function MenuClient({
 
       // soglia per evitare jitter su micro scroll
       if (Math.abs(delta) > 4) {
-        if (delta > 0) {
+        if (delta > 0 && window.scrollY>10) {
           // scroll up
           setNudgeUp(true);
         } else {
