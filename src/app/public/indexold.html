@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <title>Hygraph Demo – HomePages</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root { --gap: 12px; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
+    header { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:12px 16px; border-bottom:1px solid #ddd; }
+    header .logos { display:flex; gap:12px; align-items:center; }
+    header img { height:40px; display:block; }
+    .socials { display:flex; gap:12px; align-items:center; font-size:14px; }
+    .socials a { color:#111; text-decoration:none; border:1px solid #111; padding:4px 8px; border-radius:999px; }
+    main { padding:16px; }
+    .grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: var(--gap); }
+    .card { border:1px solid #eee; border-radius:8px; overflow:hidden; background:#fff; }
+    .card img { display:block; width:100%; height:260px; object-fit:cover; }
+    .muted { color:#666; font-size:12px; padding:6px 8px 10px; }
+    .loading, .error { padding:16px; }
+    .error { color:#b00020; white-space:pre-wrap; }
+    footer { padding:16px; color:#666; font-size:14px; border-top:1px solid #eee; }
+    .hide { display:none; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logos">
+      <img id="logoDesktop" alt="Logo Desktop" />
+      <img id="logoMobile" alt="Logo Mobile" />
+    </div>
+    <nav class="socials">
+      <a id="linkInstagram" href="#" target="_blank" rel="noopener noreferrer">INSTAGRAM</a>
+      <a id="linkThreads"   href="#" target="_blank" rel="noopener noreferrer">THREADS</a>
+      <a id="linkX"         href="#" target="_blank" rel="noopener noreferrer">X</a>
+      <a id="linkYouTube"   href="#" target="_blank" rel="noopener noreferrer">YOUTUBE</a>
+    </nav>
+  </header>
+
+  <div class="loading" id="loading">Caricamento…</div>
+  <div class="error hide" id="error"></div>
+
+  <main class="hide" id="content">
+    <h2>Immagini</h2>
+    <div class="grid" id="imagesGrid"></div>
+  </main>
+
+  <footer id="footer"></footer>
+
+  <script>
+    const HYGRAPH_ENDPOINT = "https://eu-west-2.cdn.hygraph.com/content/cmgfdcv2n007j07w3p805x60q/master";
+
+    const QUERY = `
+      query HomePages {
+        homePages(first: 1, orderBy: updatedAt_DESC) {
+          logoDesktop { url }
+          logoMobile  { url }
+          images { id url }
+          instagram
+          threads
+          x
+          youtube
+          copyright
+        }
+      }
+    `;
+
+    const els = {
+      loading: document.getElementById('loading'),
+      error: document.getElementById('error'),
+      content: document.getElementById('content'),
+      grid: document.getElementById('imagesGrid'),
+      logoDesktop: document.getElementById('logoDesktop'),
+      logoMobile: document.getElementById('logoMobile'),
+      linkInstagram: document.getElementById('linkInstagram'),
+      linkThreads: document.getElementById('linkThreads'),
+      linkX: document.getElementById('linkX'),
+      linkYouTube: document.getElementById('linkYouTube'),
+      footer: document.getElementById('footer'),
+    };
+
+    function show(node) { node.classList.remove('hide'); }
+    function hide(node) { node.classList.add('hide'); }
+
+    async function fetchHygraph() {
+      const res = await fetch(HYGRAPH_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query: QUERY }),
+      });
+
+      const data = await res.json();
+      if (!res.ok || data.errors) {
+        const msg = (data && data.errors) ? JSON.stringify(data.errors, null, 2) : res.status + ' ' + res.statusText;
+        throw new Error(msg);
+      }
+      return data.data;
+    }
+
+    function setIf(el, url) {
+      if (url) el.setAttribute('src', url); else el.classList.add('hide');
+    }
+
+    function setHref(el, url) {
+      if (url) el.setAttribute('href', url); else el.classList.add('hide');
+    }
+
+    function render(data) {
+      const home = (data.homePages && data.homePages[0]) || null;
+      if (!home) {
+        throw new Error('Nessun record "homePages" trovato.');
+      }
+
+      // Loghi
+      setIf(els.logoDesktop, home.logoDesktop?.url || '');
+      setIf(els.logoMobile,  home.logoMobile?.url  || '');
+
+      // Social
+      setHref(els.linkInstagram, home.instagram || '');
+      setHref(els.linkThreads,   home.threads   || '');
+      setHref(els.linkX,         home.x         || '');
+      setHref(els.linkYouTube,   home.youtube   || '');
+
+      // Copyright
+      els.footer.textContent = home.copyright || '';
+
+      // Immagini
+      els.grid.innerHTML = '';
+      (home.images || []).forEach((img, i) => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        const im = document.createElement('img');
+        im.src = img.url;
+        im.alt = `image ${i+1}`;
+        im.loading = 'lazy';
+        const cap = document.createElement('div');
+        cap.className = 'muted';
+        cap.textContent = img.id || '';
+        card.appendChild(im);
+        card.appendChild(cap);
+        els.grid.appendChild(card);
+      });
+    }
+
+    (async () => {
+      try {
+        const data = await fetchHygraph();
+        render(data);
+        hide(els.loading);
+        show(els.content);
+      } catch (err) {
+        hide(els.loading);
+        els.error.textContent = 'Errore: ' + (err && err.message ? err.message : String(err));
+        show(els.error);
+      }
+    })();
+  </script>
+</body>
+</html>
