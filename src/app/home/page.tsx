@@ -1,4 +1,3 @@
-import styles from "./page.module.css";
 import Menu from '@/components/Menu/MenuServer';
 import { hygraph } from '@/lib/hygraph';
 import { HOME_PAGES_QUERY, type HomePage } from '@/lib/queries/home';
@@ -39,8 +38,8 @@ export default async function Page() {
   const imgs = home.images ?? [];
 
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
+    <div >
+      <main >
     
 
         <Menu />
