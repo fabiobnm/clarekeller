@@ -22,14 +22,12 @@ export default async function Page() {
     <div>
       <main >
        <Menu/>
-       <div  className='animationOpacity' style={{position:'absolute', top:'200px', display:'flex'}}>
-        <div style={{  bottom:15, left:0, right:0, paddingLeft:15 , width:'33.33%'}}>
-archive
+       <div  className='animationOpacity' style={{position:'absolute', top:'400px', display:'flex'}}>
+        <div style={{ position:'fixed', left:0, right:0, paddingLeft:0 , width:'100vW', textAlign:'center', whiteSpace:'nowrap'}}>
+           <h1>COMING SOON</h1>
 </div>
 
-    <div style={{marginLeft:'calc(16.66% + 30px)'}}>
-      link
-    </div>
+    
       </div>
 
       </main>

@@ -1,5 +1,6 @@
 import Menu from '@/components/Menu/MenuServer';
 import { hygraph } from '@/lib/hygraph';
+import MenuHeightVar from '@/components/Utils/MenuHeightVar';
 import ReactMarkdown from 'react-markdown';
 import Footer from '@/components/Footer/Footer';
 import {
@@ -34,6 +35,7 @@ export default async function Page() {
   return (
     <div>
       <Menu />
+        <MenuHeightVar /> {/* imposta --menu-h in base a #menuTotale */}
       <main className="infoContent">
         <div className="blockInfo animationOpacity">
           <div className="textInfo">

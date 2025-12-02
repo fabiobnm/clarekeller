@@ -9,6 +9,7 @@ export type HomePage = {
   x?: string ;
   threads?: string ;
   instagram?: string ;
+  youtube?: string ;
 
   images?: ImageAsset[] | null;
 
@@ -24,10 +25,11 @@ export const HOME_PAGES_QUERY = /* GraphQL */ `
     homePages(first: 1, orderBy: updatedAt_DESC) {
       logoDesktop { url }
       logoMobile  { url }
-      images { id url }
+      images (first:100){ id url }
       instagram
       threads
       x
+      youtube
       copyright
     }
   }

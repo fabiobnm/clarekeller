@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Centered Flex Row Zoom + Hygraph</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    @font-face {
+  font-family: "Ufficio600";
+  src:
+    url("/fonts/Ufficio-500.woff2") format("woff2"), /* se ce l'hai */
+    url("/fonts/Ufficio-500.woff") format("woff");   /* il tuo file */
+  font-style: normal;
+  font-display: swap;
+}
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: rgb(233, 245, 255);
+      color: #000;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      gap: 10rem;
+         animation: backgroundIndex .6s ease-out 1.6s forwards;
+    }
+
+    @keyframes backgroundIndex {
+      to {
+        background: white;
+      }
+    }
+
+    a{
+      text-decoration: none;
+      color: black;
+     opacity:0;
+     font-family: 'Ufficio600';
+       animation: opacityIndex .6s ease-out 1.6s forwards;
+    }
+    .frame {
+      width: 100vw;
+      overflow: visible;
+      background: transparent;
+      border-radius: 0;
+      border: none;
+  
+      position: fixed;
+      top: 40vH;
+      animation: bottomMov 1s ease 1.5s forwards;
+
+    }
+
+    .fabioMenu{
+      position: relative;
+    display: flex;
+    top: -2.6vw;
+    width: 100%;
+    transition: top 0.3s 
+ease;
+    box-shadow: 0px 1px 1px transparent;
+    }
+
+    .divMenu {
+    width: 16.66%;
+    font-size: 12px;
+    }
+
+    .divMenuRight {
+    position: absolute;
+    right: 0;
+    font-size: 12px;
+
+}
+
+    @keyframes bottomMov {
+      to {
+        top: calc(50vH - 15px)
+      }
+    }
+
+    .frame.zoomed {
+      overflow: hidden;
+      border-radius: 16px;
+    }
+
+    .row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2400px;
+      padding: 12px;
+      padding-bottom: 5px;
+      overflow-x: visible;
+      overscroll-behavior-x: auto;
+      animation: inlineGap .9s ease-out 0.2s forwards;
+      overflow-x: auto;
+    }
+
+    @keyframes inlineGap {
+      to {
+        gap: 5px;
+      }
+    }
+
+    .LogoIndex{
+      opacity:0;
+       animation: opacityIndex .6s ease-out 1.6s forwards;
+    }
+
+    @keyframes opacityIndex {
+      to {
+        opacity: 1;
+      }
+    }
+
+    .row.zoomed {
+      overflow-x: auto;
+      gap: 48px;
+      padding: 24px;
+      padding-bottom: 5px;
+    }
+
+    .row::-webkit-scrollbar {
+      display: none;
+    }
+    .row::-webkit-scrollbar-track {
+      background: none;
+    }
+    .row::-webkit-scrollbar-thumb {
+      background: none;
+    }
+
+    .row img {
+      flex: 0 0 auto;
+      height: 10vH; /* small size */
+      object-fit: cover;
+      opacity: 0;
+      animation: TallIndex 1s ease 1.4s forwards,
+      opacityIndex 1s ease-out 0s forwards;
+      
+      transform-origin: top;
+
+    }
+    .row img {
+  filter: none;
+  transition: filter 0.3s ease;
+}
+
+/* quando una QUALSIASI img è in hover,
+   tutte le img diventano bright 210%… */
+.row:has(img:hover) img {
+  overflow: clip;
+ filter:  brightness(0.7);
+
+}
+
+/* …tranne quella su cui sei in hover, che resta normale */
+.row:has(img:hover) img:hover {
+  filter: none;
+}
+
+     @keyframes TallIndex {
+      to {
+        height: 50vH;
+      }
+    }
+
+    .row.zoomed img {
+      height: 50vH; /* zoomed size */
+    }
+  </style>
+</head>
+<body>
+    <div style="position: fixed; top:0; left:0;padding: 10px;padding-inline: 15px;width: 100%;">
+   <img src="../Asset4.svg" class="LogoIndex" />
+         
+   <div style="z-index: 999999;" class='fabioMenu' >
+          <div class="divMenu">
+            <a href="/info">INFO</a>
+          </div>
+          <div class="divMenu">
+            <a href="https://cwkshop-2.myshopify.com/">SHOP</a>
+          </div>
+          <div class="divMenu">
+            <a href="/archive">ARCHIVE</a>
+          </div>
+          <div class="divMenuRight">
+            <a href="/subscribe">SUBSCRIBE</a>
+          </div>
+    </div>
+
+    </div>
+  <div class="frame" id="frame">
+    <div class="row" id="row">
+      <!-- images injected from Hygraph -->
+    </div>
+  </div>
+
+  <script>
+    const HYGRAPH_ENDPOINT = "https://eu-west-2.cdn.hygraph.com/content/cmgfdcv2n007j07w3p805x60q/master";
+
+    const QUERY = `
+      query HomePages {
+        homePages(first: 1, orderBy: updatedAt_DESC) {
+          logoDesktop { url }
+          logoMobile  { url }
+          images (first:100){ id url }
+          instagram
+          threads
+          x
+          youtube
+          copyright
+        }
+      }
+    `;
+
+    const row = document.getElementById("row");
+    const frame = document.getElementById("frame");
+
+    function toggleZoom() {
+      const isZoomingIn = !row.classList.contains("zoomed");
+      row.classList.toggle("zoomed", isZoomingIn);
+      frame.classList.toggle("zoomed", isZoomingIn);
+    }
+
+    async function loadImages() {
+      try {
+        const res = await fetch(HYGRAPH_ENDPOINT, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ query: QUERY })
+        });
+
+        if (!res.ok) {
+          console.error("Hygraph HTTP error:", res.status, res.statusText);
+          return;
+        }
+
+        const json = await res.json();
+
+        if (!json.data || !json.data.homePages || json.data.homePages.length === 0) {
+          console.error("No homePages data from Hygraph", json);
+          return;
+        }
+
+        const home = json.data.homePages[0];
+        const images = home.images || [];
+
+        if (!images.length) {
+          console.warn("No images in homePages[0].images");
+          return;
+        }
+
+        // pulisci eventuali contenuti
+        row.innerHTML = "";
+
+       
+        // 🔁 ripeti la sequenza di immagini 3 volte
+        const fragment = document.createDocumentFragment();
+        for (let repeat = 0; repeat < 17; repeat++) {
+          images.forEach((imgObj) => {
+            if (!imgObj || !imgObj.url) return;
+            const img = document.createElement("img");
+            img.src = imgObj.url;
+            img.alt = imgObj.id || "";
+            fragment.appendChild(img);
+          });
+        }
+        row.appendChild(fragment);
+
+
+        // dopo che le immagini sono state inserite, parte lo zoom dopo 1.5s
+        
+
+      } catch (err) {
+        console.error("Error fetching from Hygraph:", err);
+      }
+    }
+
+    // avvia fetch quando la pagina è pronta
+    window.addEventListener("load", () => {
+      loadImages();
+    });
+  </script>
+</body>
+</html>

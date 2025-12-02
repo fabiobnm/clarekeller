@@ -51,7 +51,7 @@ export default function MenuClient({
   };
 
   const isHome = pathname === '/';
-  const logoToShow = isHome ? home?.logoDesktop?.url : home?.logoMobile?.url;
+  const logoToShow = isHome ? home?.logoDesktop?.url : home?.logoDesktop?.url;
 
   // Scroll listener: verso l'alto → nudge -4vh, verso il basso → nudge 0
   useEffect(() => {
@@ -63,7 +63,7 @@ export default function MenuClient({
       const delta = y - lastYRef.current;
 
       // soglia per evitare jitter su micro scroll
-      if (Math.abs(delta) > 4) {
+      if (Math.abs(delta) > 25) {
         if (delta > 0 && window.scrollY>10) {
           // scroll up
           setNudgeUp(true);
@@ -100,6 +100,7 @@ export default function MenuClient({
 
   return (
     <div
+       id='menuTotale'
       className={[
         styles.menuWrapper,
         enter ? styles.enter : '',
@@ -122,7 +123,7 @@ export default function MenuClient({
           ) : (
             // Pagine interne: logo cliccabile che porta a /
             <img  style={{cursor:'pointer'}}
-              className={`${styles.logo} ${styles.logoMobile}`}
+              className={`${styles.logo} ${styles.logoDesktop}`}
               onClick={handleNav('/')}
               src={logoToShow}
               alt="Logo"

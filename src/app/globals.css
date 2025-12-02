@@ -20,6 +20,10 @@
   font-display: swap;
 }
 
+:root { --menu-h: 0px; }
+
+
+
 html,
 body {
   max-width: 100vw;
@@ -37,6 +41,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+
+p{
+  font-size: 12px;
+}
 
 .FabioMenu {
   position: relative;
@@ -114,14 +122,16 @@ input::placeholder{
 .mainSubscribeDiv{
   position: absolute;
     display: flex;
-    top: 45%;
+    top: calc( 50vH + 50px);
     transform: translateY(-50%);
 }
 
-.logoFooter{
-  padding-inline: 15px;
-  position: relative;
-  bottom: -15px;
+.logoFooter {
+    padding-inline: 15px;
+    position: absolute;
+    bottom: 25px;
+    width: 30vW;
+    right: 0;
 }
 .socials a{
   transition: .3s;
@@ -136,22 +146,32 @@ transition: .3s all;
 
 .slide-in-top {
   
-transform: translateY(120%); /* fuori sopra + centrato */
- animation: slideInTop .6s ease-out .5s forwards; /* durata .5s, delay .1s */
+transform: translateY(-100%); /* fuori sopra + centrato */
+ animation: slideInTop .6s ease-out 1s forwards; /* durata .5s, delay .1s */
 }
+.slide-center {
+  
+transform: translateY(-45vH); /* fuori sopra + centrato */
+ animation: slideInTop 1s ease-out 2s forwards; /* durata .5s, delay .1s */
+}
+
+
 
 .slide-in-topSUBSCRIBE {
   
-transform: translateY(120%); /* fuori sopra + centrato */
+transform: translateY(100px); /* fuori sopra + centrato */
  animation: slideInTop .6s ease-out .2s forwards; /* durata .5s, delay .1s */
 }
 
 @keyframes slideInTop {
   to {
     transform: translateY(-0%); /* posizione finale */
+     animation: slideInTop .0s ease-out .2s forwards; /* durata .5s, delay .1s */
     
   }
 }
+
+
 
 .animationOpacity {
   
@@ -170,15 +190,27 @@ opacity: 0; /* fuori sopra + centrato */
   font-size: .7em;
   transition: .3s;
   transition-delay: .6s;
+opacity: 0; /* fuori sopra + centrato */
+ animation: opacityAnimation .4s ease-out 4s forwards; /* durata .5s, delay .1s */
 }
+
+@keyframes opacityAnimation {
+  to {
+    opacity: 1; /* posizione finale */
+    
+  }
+}
+
 .infoContent{
-    position: absolute;
-    top: 200px;
+     position: absolute;
+    top: 50px;
     display: block;
+   top: calc(50px + var(--menu-h, 50px)); /* 50px fallback */
 }
 
 .infoLink{
     margin-left: calc(16.66% + 30px);
+    font-size: 12px;
 }
 .infoLinkVoice{
   opacity: 1;
@@ -191,10 +223,16 @@ transition: .2s all;
 
 .divMenu{
   width: 16.66%;
+  font-size: 12px;
+  opacity: 0;
+   animation: opacityAnimation .4s ease-out .3s forwards;
 }
 .divMenuRight{
   position: absolute;
   right: 15px;
+font-size: 12px;
+opacity: 0;
+ animation: opacityAnimation .4s ease-out .3s forwards;
 }
 
 .divMenu a{
@@ -234,8 +272,8 @@ a {
 }
 
 .imgHomeNew{
-  width: 100%;
-  height: 100%;
+  width: 50%;
+  height: 50%;
 transition: .8s all;
 object-fit: cover;
 }
@@ -331,24 +369,39 @@ z-index: 99;
   gap: 15px;
   width: max-content;
   align-items: end;
-  animation: marquee 60s linear infinite; /* velocità: regola qui */
+  animation: marquee 60s linear 5s forwards infinite; /* velocità: regola qui */
   will-change: transform;
 }
+
+
+
 
 /* Ogni item: base 16.66vw, allineato in basso; cresce in hover come volevi */
 .carouselItem {
   display: flex;
   align-items: flex-end;
-  width: calc(16.66vw - 15px);
+  width: auto;
   height: 42vh;
   transition: .6s all;
   flex: 0 0 auto; /* non comprimere */
+  margin-right: 100vW; /* fuori sopra + centrato */
+  animation: gapMovement 1.4s ease-out 1s forwards; /* durata .5s, delay .1s */
 }
+
+@keyframes gapMovement {
+ 
+  
+  to {
+     margin-right: 0px; /* fuori sopra + centrato */  
+  }
+}
+
+
 
 .carouselItem:hover {
   
-  height: calc(42vH * 1.5);
-  width:calc(calc(16.66vw - 15px) * 1.5);
+ /* height: calc(42vH * 1.5);*/
+  width:auto;
   z-index: 99;
   transition: .6s all;
 }
@@ -363,6 +416,8 @@ z-index: 99;
    /* evita salto quando hover mette il bordo */
   box-sizing: border-box;
 }
+
+
 
 
 /* quando il mouse è su QUALSIASI .carouselItem: nascondi i socials */
@@ -385,6 +440,13 @@ z-index: 99;
 }
 
 @media (max-width: 600px) {
+
+
+
+p, .infoLink, .divMenu, .divMenuRight{
+  font-size: 16px;
+}
+
 
   .formSubscribe{
   display: grid;
@@ -455,7 +517,7 @@ text-align: center;
 
 .infoContent{
     position: absolute;
-    top: 305px;
+    top: 200px;
     display: block;
 }
 .blockInfo{
@@ -497,4 +559,64 @@ text-align: center;
 /* Non toccare il copyright */
 .Carousel .socials .copy {
   opacity: 1;
+}
+
+
+
+
+.carousel100{
+  margin:100px auto;
+  width: 90%;
+  border: 5px solid red;
+  display: flex;
+  overflow-x: auto;
+}
+
+.carousel100::-webkit-scrollbar{
+  display: none;
+}
+
+.group100{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+  padding-right: 1em;
+  animation: spin 50s infinite linear 2s forwards;
+}
+.card100{
+  flex: 0 0 5em;
+  height: 5em;
+  padding: 1em;
+  background: cornflowerblue;
+  font-size: 3rem;
+  text-align: center;
+  align-content: center;
+}
+
+.carousel100:has(.card100:hover) .group100 {
+  animation-play-state: paused;
+}
+
+
+@keyframes spin {
+ 
+  from {
+         translate: 0%;  }
+  to {
+translate: -100%;  }
+}
+
+
+.appari{
+opacity: 0;
+  animation: opacitino .6s ease-out .5s forwards; /* durata .5s, delay .1s */
+
+}
+@keyframes opacitino {
+  to {
+
+    opacity: 1; /* posizione finale */
+    
+  }
 }
