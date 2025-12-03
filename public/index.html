@@ -9,17 +9,20 @@
     }
 
     @font-face {
-  font-family: "Ufficio600";
-  src:
-    url("/fonts/Ufficio-500.woff2") format("woff2"), /* se ce l'hai */
-    url("/fonts/Ufficio-500.woff") format("woff");   /* il tuo file */
-  font-style: normal;
-  font-display: swap;
-}
+      font-family: "Ufficio600";
+      src:
+        url("/fonts/Ufficio-500.woff2") format("woff2"),
+        url("/fonts/Ufficio-500.woff") format("woff");
+      font-style: normal;
+      font-display: swap;
+    }
+    ::-webkit-scrollbar {
+display: none;
+    }
 
     body {
       margin: 0;
-      min-height: 100vh;
+      min-height: 3000vh; /* IMPORTANTE: serve altezza per poter scrollare in verticale */
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -27,7 +30,7 @@
       color: #000;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       gap: 10rem;
-         animation: backgroundIndex .6s ease-out 1.6s forwards;
+      animation: backgroundIndex .6s ease 1.6s forwards;
     }
 
     @keyframes backgroundIndex {
@@ -39,48 +42,56 @@
     a{
       text-decoration: none;
       color: black;
-     opacity:0;
-     font-family: 'Ufficio600';
-       animation: opacityIndex .6s ease-out 1.6s forwards;
+      opacity:1;
+      font-family: 'Ufficio600';
     }
+
     .frame {
       width: 100vw;
       overflow: visible;
       background: transparent;
       border-radius: 0;
       border: none;
-  
       position: fixed;
-      top: 40vH;
+      top: 40vh;
+      transform-origin: top;
       animation: bottomMov 1s ease 1.5s forwards;
 
     }
 
     .fabioMenu{
       position: relative;
-    display: flex;
-    top: -2.6vw;
-    width: 100%;
-    transition: top 0.3s 
-ease;
-    box-shadow: 0px 1px 1px transparent;
+      display: flex;
+      top: -2.6vw;
+      width: 100%;
+      transition: top 0.3s ease;
+      box-shadow: 0px 1px 1px transparent;
+      opacity: 0;
+      animation: opacityIndex .6s ease-out 1.6s forwards;
+
     }
 
     .divMenu {
-    width: 16.66%;
-    font-size: 12px;
-    }
+      width: 16.66%;
+      font-size: 12px;
+ opacity: 1;
+   }
+
+.divMenu a{
+   transition: opacity .4s ease;
+  }
 
     .divMenuRight {
-    position: absolute;
-    right: 0;
-    font-size: 12px;
+      position: absolute;
+      right: 0;
+      font-size: 12px;
+      text-align: end;
+    }
 
-}
 
     @keyframes bottomMov {
       to {
-        top: calc(50vH - 15px)
+        top: calc(50vh - 15px)
       }
     }
 
@@ -93,13 +104,12 @@ ease;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 2400px;
+      gap: 1500px;
       padding: 12px;
       padding-bottom: 5px;
-      overflow-x: visible;
+      overflow-x: auto;
       overscroll-behavior-x: auto;
       animation: inlineGap .9s ease-out 0.2s forwards;
-      overflow-x: auto;
     }
 
     @keyframes inlineGap {
@@ -110,7 +120,7 @@ ease;
 
     .LogoIndex{
       opacity:0;
-       animation: opacityIndex .6s ease-out 1.6s forwards;
+      animation: opacityIndex .6s ease-out 1.6s forwards;
     }
 
     @keyframes opacityIndex {
@@ -138,64 +148,109 @@ ease;
 
     .row img {
       flex: 0 0 auto;
-      height: 10vH; /* small size */
+      height: 10vh; /* small size */
       object-fit: cover;
       opacity: 0;
-      animation: TallIndex 1s ease 1.4s forwards,
-      opacityIndex 1s ease-out 0s forwards;
-      
+      animation:
+        TallIndex 1s ease 1.2s forwards,
+        opacityIndex 1s ease-out 0s forwards;
       transform-origin: top;
-
+      filter: none;
+      transition: filter 0.3s ease;
     }
-    .row img {
-  filter: none;
-  transition: filter 0.3s ease;
-}
-
-/* quando una QUALSIASI img è in hover,
-   tutte le img diventano bright 210%… */
-.row:has(img:hover) img {
-  overflow: clip;
- filter:  brightness(0.7);
-
-}
-
-/* …tranne quella su cui sei in hover, che resta normale */
-.row:has(img:hover) img:hover {
-  filter: none;
-}
-
      @keyframes TallIndex {
       to {
-        height: 50vH;
+        height: 50vh;
       }
     }
 
-    .row.zoomed img {
-      height: 50vH; /* zoomed size */
+
+     .socials {
+    top: 47vH;
+    width: 100%;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 8px;
+    padding-left: 15px;
+    font-family: "Ufficio600";
+}
+
+.socials {
+    font-size: .7em;
+    transition: .3s;
+    transition-delay: .6s;
+    opacity: 0;
+    animation: opacityAnimation .4s 
+ease-out 3s forwards;
+}
+
+
+@keyframes opacityAnimation {
+  to {
+    opacity: 1; /* posizione finale */
+    
+  }
+}
+
+
+.socials .copy {
+    position: absolute;
+    right: 15px;
+}
+
+
+
+
+    /* quando una QUALSIASI img è in hover, tutte bright 0.7 */
+    .row:has(img:hover) img {
+      overflow: clip;
+      filter: brightness(0.7);
     }
+
+    /* tranne quella sotto il mouse */
+    .row:has(img:hover) img:hover {
+      filter: none;
+    }
+
+    .row.zoomed img {
+      height: 42vh; /* zoomed size */
+    }
+
+
+
+
   </style>
 </head>
 <body>
-    <div style="position: fixed; top:0; left:0;padding: 10px;padding-inline: 15px;width: 100%;">
-   <img src="../Asset4.svg" class="LogoIndex" />
-         
-   <div style="z-index: 999999;" class='fabioMenu' >
-          <div class="divMenu">
-            <a href="/info">INFO</a>
-          </div>
-          <div class="divMenu">
-            <a href="https://cwkshop-2.myshopify.com/">SHOP</a>
-          </div>
-          <div class="divMenu">
-            <a href="/archive">ARCHIVE</a>
-          </div>
-          <div class="divMenuRight">
-            <a href="/subscribe">SUBSCRIBE</a>
-          </div>
+  <div style="position: fixed; top:0; left:0;padding: 10px;padding-inline: 15px;width: 100%;">
+    <img src="../Asset4.svg" class="LogoIndex" />
+    <div style="z-index: 999999;" class='fabioMenu' >
+      <div class="divMenu">
+        <a href="/info">INFO</a>
+      </div>
+      <div class="divMenu">
+        <a href="https://cwkshop-2.myshopify.com/">SHOP</a>
+      </div>
+      <div class="divMenu">
+        <a href="/archive">ARCHIVE</a>
+      </div>
+      <div class="divMenu divMenuRight">
+        <a href="/subscribe">SUBSCRIBE</a>
+      </div>
     </div>
+  </div>
 
-    </div>
+  <!-- questo blocco in HTML puro è solo testo, lascialo o gestiscilo poi da JS/React -->
+  <div class="socials">
+    <a style="margin-right:10px">INSTAGRAM</a>
+    <a style="margin-right:10px">YOUTUBE</a>
+    <a style="margin-right:10px">THREADS</a>
+    <a style="margin-right:10px">X</a>
+    <p class="copy">©2025 Clare Waight Keller</p>
+  </div>
+
   <div class="frame" id="frame">
     <div class="row" id="row">
       <!-- images injected from Hygraph -->
@@ -222,12 +277,6 @@ ease;
 
     const row = document.getElementById("row");
     const frame = document.getElementById("frame");
-
-    function toggleZoom() {
-      const isZoomingIn = !row.classList.contains("zoomed");
-      row.classList.toggle("zoomed", isZoomingIn);
-      frame.classList.toggle("zoomed", isZoomingIn);
-    }
 
     async function loadImages() {
       try {
@@ -262,8 +311,7 @@ ease;
         // pulisci eventuali contenuti
         row.innerHTML = "";
 
-       
-        // 🔁 ripeti la sequenza di immagini 3 volte
+        // ripeti la sequenza di immagini 17 volte
         const fragment = document.createDocumentFragment();
         for (let repeat = 0; repeat < 17; repeat++) {
           images.forEach((imgObj) => {
@@ -276,19 +324,56 @@ ease;
         }
         row.appendChild(fragment);
 
-
-        // dopo che le immagini sono state inserite, parte lo zoom dopo 1.5s
-        
-
       } catch (err) {
         console.error("Error fetching from Hygraph:", err);
       }
     }
 
-    // avvia fetch quando la pagina è pronta
+    // 🔁 collega scroll verticale → scroll orizzontale
+    function setupVerticalToHorizontalScroll() {
+      function updateHorizontalScroll() {
+        const maxScrollY =
+          document.documentElement.scrollHeight - window.innerHeight;
+        const maxScrollX = row.scrollWidth - row.clientWidth;
+
+        if (maxScrollY <= 0 || maxScrollX <= 0) return;
+
+        const ratio = window.scrollY / maxScrollY; // 0 → top, 1 → bottom
+        row.scrollLeft = maxScrollX * ratio;
+      }
+
+      window.addEventListener("scroll", updateHorizontalScroll);
+      // chiamata iniziale per sincronizzare
+      updateHorizontalScroll();
+    }
+
     window.addEventListener("load", () => {
-      loadImages();
+      loadImages().then(() => {
+        setupVerticalToHorizontalScroll();
+      });
     });
+
+
+
+
+
+    document.addEventListener("DOMContentLoaded", () => {
+  const links = document.querySelectorAll(".fabioMenu a");
+
+  links.forEach(link => {
+    link.addEventListener("mouseenter", () => {
+      links.forEach(l => {
+        if (l !== link) l.style.opacity = "0.2";
+      });
+    });
+
+    link.addEventListener("mouseleave", () => {
+      links.forEach(l => {
+        l.style.opacity = "1";
+      });
+    });
+  });
+});
   </script>
 </body>
 </html>

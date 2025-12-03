@@ -42,6 +42,9 @@ export default async function Page() {
             <ReactMarkdown>{info.infoText?.markdown ?? ''}</ReactMarkdown>
           </div>
 
+
+
+{/* LINK DESTRA
           <div className="infoLink">
             <div style={{ marginBottom: 12 }}>Links Title</div>
             {links1.length > 0 && (
@@ -79,6 +82,8 @@ export default async function Page() {
               </ul>
             )}
           </div>
+
+           */}
         </div>
         <div style={{marginTop:'100px'}}>
           <Footer />

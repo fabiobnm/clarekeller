@@ -47,7 +47,7 @@ export default function MenuClient({
     setExit(true);
     setTimeout(() => {
       router.push(href);
-    }, 300);
+    }, 0);//L'HO LEVATO 
   };
 
   const isHome = pathname === '/';

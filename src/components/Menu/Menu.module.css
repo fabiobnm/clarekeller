@@ -5,13 +5,13 @@
   left: 0;
   width: 100%;
   z-index: 9999;
-  transform: translateY(-100%);
+  transform: translateY(0%);/* aumeta se vuoi che parte da fuori*/
   transition: transform 0.4s ease-in-out ;
 
   will-change: transform;
 }
 .enter { transform: translateY(0); }
-.exit  { transform: translateY(-100%); }
+.exit  { transform: translateY(0%); }/* aumeta se vuoi che sale quando esci dalla pagina*/
 
 /* Nudge: muove tutto il contenuto del menu (logo + voci) */
 .nudge {

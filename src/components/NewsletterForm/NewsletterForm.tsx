@@ -107,7 +107,7 @@ export default function NewsletterForm() {
         {loading ? 'Iscrizione…' : 'Subscribe \u2192'}
       </button>
 
-      {ok === true && <p style={{ color: 'green' }}>Controlla la tua email per confermare l’iscrizione.</p>}
+      {ok === true && <p style={{ color: 'green' }}>Thanks for subscribing.</p>}
       {ok === false && <p style={{ color: 'crimson' }}>Errore: {err}</p>}
     </form>
   );
