@@ -17,12 +17,12 @@
       font-display: swap;
     }
     ::-webkit-scrollbar {
-display: none;
+      display: none;
     }
 
     body {
       margin: 0;
-      min-height: 3000vh; /* IMPORTANTE: serve altezza per poter scrollare in verticale */
+      min-height: 3000vh; /* serve altezza per poter scrollare in verticale */
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -56,7 +56,6 @@ display: none;
       top: 40vh;
       transform-origin: top;
       animation: bottomMov 1s ease 1.5s forwards;
-
     }
 
     .fabioMenu{
@@ -68,18 +67,17 @@ display: none;
       box-shadow: 0px 1px 1px transparent;
       opacity: 0;
       animation: opacityIndex .6s ease-out 1.6s forwards;
-
     }
 
     .divMenu {
       width: 16.66%;
       font-size: 12px;
- opacity: 1;
-   }
+      opacity: 1;
+    }
 
-.divMenu a{
-   transition: opacity .4s ease;
-  }
+    .divMenu a{
+      transition: opacity .4s ease;
+    }
 
     .divMenuRight {
       position: absolute;
@@ -87,7 +85,6 @@ display: none;
       font-size: 12px;
       text-align: end;
     }
-
 
     @keyframes bottomMov {
       to {
@@ -153,55 +150,44 @@ display: none;
       opacity: 0;
       animation:
         TallIndex 1s ease 1.2s forwards,
-        opacityIndex 1s ease-out 0s forwards;
+        opacityIndex .9s ease-out 0.2s forwards;
       transform-origin: top;
       filter: none;
       transition: filter 0.3s ease;
     }
-     @keyframes TallIndex {
+    @keyframes TallIndex {
       to {
         height: 50vh;
       }
     }
 
+    .socials {
+      top: 47vH;
+      width: 100%;
+      position: fixed;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding-bottom: 8px;
+      padding-left: 15px;
+      font-family: "Ufficio600";
+      font-size: .7em;
+      transition: .3s;
+      transition-delay: .6s;
+      opacity: 0;
+      animation: opacityAnimation .4s ease-out 3s forwards;
+    }
 
-     .socials {
-    top: 47vH;
-    width: 100%;
-    position: fixed;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding-bottom: 8px;
-    padding-left: 15px;
-    font-family: "Ufficio600";
-}
+    @keyframes opacityAnimation {
+      to {
+        opacity: 1;
+      }
+    }
 
-.socials {
-    font-size: .7em;
-    transition: .3s;
-    transition-delay: .6s;
-    opacity: 0;
-    animation: opacityAnimation .4s 
-ease-out 3s forwards;
-}
-
-
-@keyframes opacityAnimation {
-  to {
-    opacity: 1; /* posizione finale */
-    
-  }
-}
-
-
-.socials .copy {
-    position: absolute;
-    right: 15px;
-}
-
-
-
+    .socials .copy {
+      position: absolute;
+      right: 15px;
+    }
 
     /* quando una QUALSIASI img è in hover, tutte bright 0.7 */
     .row:has(img:hover) img {
@@ -218,9 +204,22 @@ ease-out 3s forwards;
       height: 42vh; /* zoomed size */
     }
 
+    /* social hover opacity behavior (kept) */
+    .socials a {
+      cursor:pointer;
+      opacity: 1;
+      transition: opacity 0.4s ease;
+    }
 
+    /* quando qualunque <a> è in hover → tutti a .2 */
+    .socials:has(a:hover) a {
+      opacity: 0.2;
+    }
 
-
+    /* tranne QUELLO sotto il mouse */
+    .socials a:hover {
+      opacity: 1 !important;
+    }
   </style>
 </head>
 <body>
@@ -234,7 +233,8 @@ ease-out 3s forwards;
         <a href="https://cwkshop-2.myshopify.com/">SHOP</a>
       </div>
       <div class="divMenu">
-        <a href="/archive">ARCHIVE</a>
+        <!-- archive intentionally non-clickable -->
+        <a style="cursor:default" class="archive">ARCHIVE</a>
       </div>
       <div class="divMenu divMenuRight">
         <a href="/subscribe">SUBSCRIBE</a>
@@ -242,12 +242,12 @@ ease-out 3s forwards;
     </div>
   </div>
 
-  <!-- questo blocco in HTML puro è solo testo, lascialo o gestiscilo poi da JS/React -->
+  <!-- social links: give them IDs so JS can populate hrefs -->
   <div class="socials">
-    <a style="margin-right:10px">INSTAGRAM</a>
-    <a style="margin-right:10px">YOUTUBE</a>
-    <a style="margin-right:10px">THREADS</a>
-    <a style="margin-right:10px">X</a>
+    <a id="instagram" style="margin-right:10px" href="#" aria-disabled="true">INSTAGRAM</a>
+    <a id="youtube" style="margin-right:10px" href="#" aria-disabled="true">YOUTUBE</a>
+    <a id="threads" style="margin-right:10px" href="#" aria-disabled="true">THREADS</a>
+    <a id="x" style="margin-right:10px" href="#" aria-disabled="true">X</a>
     <p class="copy">©2025 Clare Waight Keller</p>
   </div>
 
@@ -278,7 +278,7 @@ ease-out 3s forwards;
     const row = document.getElementById("row");
     const frame = document.getElementById("frame");
 
-    async function loadImages() {
+    async function loadImagesAndLinks() {
       try {
         const res = await fetch(HYGRAPH_ENDPOINT, {
           method: "POST",
@@ -301,17 +301,10 @@ ease-out 3s forwards;
         }
 
         const home = json.data.homePages[0];
+
+        // --- IMAGES ---
         const images = home.images || [];
-
-        if (!images.length) {
-          console.warn("No images in homePages[0].images");
-          return;
-        }
-
-        // pulisci eventuali contenuti
         row.innerHTML = "";
-
-        // ripeti la sequenza di immagini 17 volte
         const fragment = document.createDocumentFragment();
         for (let repeat = 0; repeat < 17; repeat++) {
           images.forEach((imgObj) => {
@@ -324,12 +317,42 @@ ease-out 3s forwards;
         }
         row.appendChild(fragment);
 
+        // --- SOCIAL LINKS ---
+        // Helper to safely set a link (or disable it if missing)
+        function setSocialLink(id, url, label) {
+          const el = document.getElementById(id);
+          if (!el) return;
+          if (url && url.trim()) {
+            el.setAttribute("href", url);
+            el.setAttribute("target", "_blank");
+            el.setAttribute("rel", "noopener noreferrer");
+            el.removeAttribute("aria-disabled");
+            el.textContent = label; // keep label consistent
+          } else {
+            el.setAttribute("href", "#");
+            el.setAttribute("aria-disabled", "true");
+            el.removeAttribute("target");
+            el.removeAttribute("rel");
+          }
+        }
+
+        setSocialLink("instagram", home.instagram, "INSTAGRAM");
+        setSocialLink("youtube", home.youtube, "YOUTUBE");
+        setSocialLink("threads", home.threads, "THREADS");
+        setSocialLink("x", home.x, "X");
+
+        // update copyright if present
+        if (home.copyright) {
+          const copy = document.querySelector(".socials .copy");
+          if (copy) copy.textContent = home.copyright;
+        }
+
       } catch (err) {
         console.error("Error fetching from Hygraph:", err);
       }
     }
 
-    // 🔁 collega scroll verticale → scroll orizzontale
+    // collega scroll verticale → scroll orizzontale (sensibilità standard)
     function setupVerticalToHorizontalScroll() {
       function updateHorizontalScroll() {
         const maxScrollY =
@@ -343,37 +366,48 @@ ease-out 3s forwards;
       }
 
       window.addEventListener("scroll", updateHorizontalScroll);
-      // chiamata iniziale per sincronizzare
       updateHorizontalScroll();
     }
 
+    // menu opacity behavior (hover dims others)
+    function setupMenuHoverDim() {
+      const links = document.querySelectorAll(".fabioMenu a");
+      links.forEach(link => {
+        link.addEventListener("mouseenter", () => {
+          links.forEach(l => {
+            if (l !== link) l.style.opacity = "0.2";
+          });
+        });
+
+        link.addEventListener("mouseleave", () => {
+          links.forEach(l => {
+            l.style.opacity = "1";
+          });
+        });
+      });
+    }
+
+    // archive "COMING SOON" on hover
+    function setupArchiveComingSoon() {
+      const archiveLink = document.querySelector('.archive');
+      if (archiveLink) {
+        const originalText = archiveLink.textContent;
+        archiveLink.addEventListener("mouseenter", () => {
+          archiveLink.textContent = "COMING SOON";
+        });
+        archiveLink.addEventListener("mouseleave", () => {
+          archiveLink.textContent = originalText;
+        });
+      }
+    }
+
     window.addEventListener("load", () => {
-      loadImages().then(() => {
+      loadImagesAndLinks().then(() => {
         setupVerticalToHorizontalScroll();
+        setupMenuHoverDim();
+        setupArchiveComingSoon();
       });
     });
-
-
-
-
-
-    document.addEventListener("DOMContentLoaded", () => {
-  const links = document.querySelectorAll(".fabioMenu a");
-
-  links.forEach(link => {
-    link.addEventListener("mouseenter", () => {
-      links.forEach(l => {
-        if (l !== link) l.style.opacity = "0.2";
-      });
-    });
-
-    link.addEventListener("mouseleave", () => {
-      links.forEach(l => {
-        l.style.opacity = "1";
-      });
-    });
-  });
-});
   </script>
 </body>
 </html>

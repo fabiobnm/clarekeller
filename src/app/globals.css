@@ -91,6 +91,25 @@ p{
 }
 
 
+
+   .footerLink a {
+      cursor:pointer;
+  opacity: 1;
+  transition: opacity 0.4s ease;
+}
+
+/* quando qualunque <a> è in hover → tutti a .2 */
+.footerLink:has(a:hover) a {
+  opacity: 0.2;
+}
+
+/* tranne QUELLO sotto il mouse */
+.footerLink a:hover {
+  opacity: 1 !important;
+}
+
+
+
 .labelInput{
     margin-top: 10px;
 }
