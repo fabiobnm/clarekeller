@@ -233,6 +233,9 @@
   display: block;
   top: 4vW;
 }
+.socials{
+  top: 50dvh;
+}
 .divMenuRight {
     position: relative;
   
