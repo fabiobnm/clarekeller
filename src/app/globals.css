@@ -850,6 +850,7 @@ opacity: 0;
     text-align: start;
 }
   body{
+    height: 100vH;
   min-height: 100vH;
 }
 
