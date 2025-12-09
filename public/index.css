@@ -47,14 +47,18 @@
       border-radius: 0;
       border: none;
       position: fixed;
-      top: 58dvh;
+      top: 40vh;
+      top: 40dvh;
       transform-origin: top;
+      animation: bottomMov 1s ease 1.5s forwards;
+
     }
 
 
     @keyframes bottomMov {
       to {
-        top: calc(60vh - 15px)
+        top: 58vh;
+        top: 58dvh
       }
     }
 
@@ -140,18 +144,22 @@
 
     .row img {
       flex: 0 0 auto;
-      height: 40dvh; /* small size */
+      height: 10vh;
+      height: 10dvh; /* small size */
       object-fit: cover;
       opacity: 0;
       animation:
+        TallIndex 1s ease 1.2s forwards,
         opacityIndex .9s ease-out 0.2s forwards;
       transform-origin: top;
       filter: none;
       transition: filter 0.3s ease;
     }
     @keyframes TallIndex {
+    
       to {
         height: 40vh;
+        height: 40dvh;
       }
     }
 
