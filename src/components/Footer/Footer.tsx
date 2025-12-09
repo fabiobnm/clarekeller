@@ -17,7 +17,7 @@ export default async function MenuServer({ page = 'default', itemBasis = '16.66%
   
   return (
     <div>
-<img className='logoFooter' src={logoUrl}  />
+ {/* <img className='logoFooter' src={logoUrl}  /> */}
   <div className='footerLink' style={{ position:'relative',bottom:'1vW',paddingInline:15, fontSize:'.7em'}}>
        <a style={{marginRight:'10px'}} href={home.instagram}>INSTAGRAM</a>
        <a style={{marginRight:'10px'}} href={home.youtube}>YOUTUBE</a>

@@ -7,6 +7,8 @@ import IntroScroll from '@/components/IntroScroll';
 import CenteredImages from '@/components/CenteredImg';
 import ScatterStrip from '@/components/Scatter';
 import ZoomRow from '@/components/Zoom';
+import styles from './page.module.css';
+
 
 
 
@@ -45,7 +47,6 @@ export default async function Page() {
         <Menu />
 
         {/* Barra fissa in basso con link + carousel */}
-        <div  className="Carousel slide-center">
           <div className="socials">
             <a style={{ marginRight: '10px' }} href={home.instagram}>INSTAGRAM</a>
             <a style={{ marginRight: '10px' }} href={home.youtube}>YOUTUBE</a>
@@ -56,45 +57,45 @@ export default async function Page() {
 
    
 
-     <ZoomRow
-        images={images}
-        autoStartDelayMs={1000} // ~1s
-        smallHeight={120}
-        bigHeight={420}
-      />
-
- {/* CAROUSEL: traccia duplicata per loop infinito */}
-
-  {/*       
+      
           {imgs.length ? (
-            <div className="carouselViewport" aria-label="Galleria immagini">
-              <div className="carouselTrack">
+            <div className="frame"  id='frame' aria-label="Galleria immagini">
+              <div className="row" id='row'>
                 {imgs.map((img, i) => (
-                  <div className="carouselItem" key={img.id ?? `${img.url}-${i}`}>
                     <img
+                      key={img.id ?? `${img.url}-${i}`}
                       src={img.url}
-                      className="imgHomeNew"
+                      className={styles.ciao}
                       alt={`Image ${i + 1}`}
                       loading="lazy"
                     />
-                  </div>
                 ))}
                 {imgs.map((img, i) => (
-                  <div className="carouselItem" key={`dup-${img.id ?? `${img.url}-${i}`}`}>
                     <img
+                      key={`dup-${img.id ?? `${img.url}-${i}`}`}
                       src={img.url}
-                      className="imgHomeNew"
+                      className={styles.ciao}
                       alt={`Image duplicate ${i + 1}`}
                       loading="lazy"
                     />
-                  </div>
+                ))}
+                   {imgs.map((img, i) => (
+                    <img
+                      key={`dup-${img.id ?? `${img.url}-${i}`}`}
+                      src={img.url}
+                      className={styles.ciao}
+                      alt={`Image duplicate ${i + 1}`}
+                      loading="lazy"
+                    />
                 ))}
               </div>
             </div>
           ) : null}
           
-          */}
-        </div>
+         
+
+
+
       </main>
     </div>
   );
