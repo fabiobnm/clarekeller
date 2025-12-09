@@ -47,9 +47,8 @@
       border-radius: 0;
       border: none;
       position: fixed;
-      top: 40vh;
+      top: 58dvh;
       transform-origin: top;
-      animation: bottomMov 1s ease 1.5s forwards;
     }
 
 
@@ -141,11 +140,10 @@
 
     .row img {
       flex: 0 0 auto;
-      height: 10vh; /* small size */
+      height: 40dvh; /* small size */
       object-fit: cover;
       opacity: 0;
       animation:
-        TallIndex 1s ease 1.2s forwards,
         opacityIndex .9s ease-out 0.2s forwards;
       transform-origin: top;
       filter: none;
@@ -233,9 +231,9 @@
     text-align: start;
 }
   body{
-  min-height: 100vH;
-  height: 100vh; /* Use vh as a fallback for browsers that do not support Custom Properties */
-  height: calc(var(--vh, 1vh) * 100);
+  min-height: 100dvh;
+  height: 100dvh; /* Use vh as a fallback for browsers that do not support Custom Properties */
+  max-height: 100dvh;
 }
 
     }
