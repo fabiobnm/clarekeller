@@ -47,15 +47,14 @@
       border-radius: 0;
       border: none;
       position: fixed;
-      top: 40vh;
+       top: 58dvh;
       transform-origin: top;
-      animation: bottomMov 1s ease 1.5s forwards;
     }
 
 
     @keyframes bottomMov {
       to {
-        top: calc(60vh - 15px)
+        top: 60dvh
       }
     }
 
