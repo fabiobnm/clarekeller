@@ -42,6 +42,28 @@
   </div>
 
   <script>
+
+const box = document.getElementById('frame');
+const rows = document.querySelectorAll('.row');
+
+
+  // cambio inline
+
+    setTimeout(() => {
+        box.style.setProperty('top', '58dvh');
+        rows.forEach(row => {
+  const imgs = row.querySelectorAll('img');
+  imgs.forEach(img => {
+    // usa setProperty se vuoi una custom property, o semplicemente:
+    img.style.setProperty('height', '40dvh');
+    // oppure: img.style.height = '40dvh';
+  });
+});
+
+      }, 1500);
+  
+  
+  
     const HYGRAPH_ENDPOINT = "https://eu-west-2.cdn.hygraph.com/content/cmgfdcv2n007j07w3p805x60q/master";
 
     const QUERY = `

@@ -50,7 +50,7 @@
       top: 40vh;
       top: 40dvh;
       transform-origin: top;
-      animation: bottomMov 1s ease 1.5s forwards;
+      transition: top 2s;
 
     }
 
@@ -149,11 +149,10 @@
       object-fit: cover;
       opacity: 0;
       animation:
-        TallIndex 1s ease 1.2s forwards,
         opacityIndex .9s ease-out 0.2s forwards;
       transform-origin: top;
       filter: none;
-      transition: filter 0.3s ease;
+      transition: filter 0.3s ease, height 2s;
     }
     @keyframes TallIndex {
     
