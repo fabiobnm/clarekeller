@@ -38,7 +38,7 @@ export default async function Page() {
         <MenuHeightVar /> {/* imposta --menu-h in base a #menuTotale */}
       <main className="infoContent">
         <div className="blockInfo animationOpacity">
-          <div className="textInfo">
+          <div className="textInfo" style={{marginBottom:'26vW'}}>
             <ReactMarkdown>{info.infoText?.markdown ?? ''}</ReactMarkdown>
           </div>
 

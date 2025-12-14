@@ -226,8 +226,10 @@
     @media (max-width: 600px) {
 .divMenu{
   white-space: nowrap;
-  font-size: 16px;
+  font-size: 14px;
+  line-height: 1.6;
 }
+
 .fabioMenu{
   display: block;
   top: 4vW;

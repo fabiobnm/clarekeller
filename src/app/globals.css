@@ -536,7 +536,7 @@ text-align: center;
 
 .infoContent{
     position: absolute;
-    top: 200px;
+    top: 250px;
     display: block;
 }
 .blockInfo{
@@ -838,7 +838,8 @@ opacity: 0;
     @media (max-width: 600px) {
 .divMenu{
   white-space: nowrap;
-  font-size: 16px;
+  font-size: 14px;
+  line-height: 1.6;
 }
 .fabioMenu{
   display: block;

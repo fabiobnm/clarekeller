@@ -85,7 +85,7 @@
   margin-bottom: 10px;
 }
 .nudgeUp {
-  transform: translateY(calc(-29vW - 15px)); /* richiesta: sale di 4vh */
+  transform: translateY(calc(-36vW - 15px)); /* richiesta: sale di 4vh */
 }
 
  .FabioMenu {
@@ -109,3 +109,36 @@
 
 /* Mantieni la voce attiva sempre a 1 */
 .active { opacity: 1; pointer-events: none; }
+
+
+.swapText {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+/* testo originale */
+.swapText::before {
+  content: attr(data-original);
+}
+
+/* testo hover */
+.swapText::after {
+  content: attr(data-hover);
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  color: black;
+  transition: opacity 0.2s ease;
+  white-space: nowrap;
+}
+
+/* nascondi ARCHIVE, mostra COMING SOON */
+.swapText:hover {
+  color: transparent;
+}
+
+.swapText:hover::after {
+  opacity: .5;
+}

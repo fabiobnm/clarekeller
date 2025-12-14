@@ -140,7 +140,11 @@ export default function MenuClient({
             <NavItem href="https://cwkshop-2.myshopify.com/">SHOP</NavItem>
           </div>
           <div className="divMenu">
-            <NavItem href="/archive">ARCHIVE</NavItem>
+            <NavItem href="/archive" >
+    <span className={styles.swapText} data-hover="COMING SOON">
+      ARCHIVE
+    </span>
+  </NavItem>
           </div>
           <div className="divMenuRight">
             <NavItem href="/subscribe">SUBSCRIBE</NavItem>

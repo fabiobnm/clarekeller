@@ -116,7 +116,7 @@ const rows = document.querySelectorAll('.row');
           images.forEach((imgObj) => {
             if (!imgObj || !imgObj.url) return;
             const img = document.createElement("img");
-            img.src = imgObj.url;
+            img.src = imgObj.url;            
             img.alt = imgObj.id || "";
             fragment.appendChild(img);
           });
