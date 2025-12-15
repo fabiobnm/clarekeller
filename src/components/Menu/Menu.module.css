@@ -17,7 +17,7 @@
 .nudge {
   width: 100%;
   transform: translateY(0);
-  transition: transform .4s ease ; /* regola se vuoi più/meno reattivo */
+  transition: transform .8s ease ; /* regola se vuoi più/meno reattivo */
   will-change: transform;
 }
 .nudgeUp {

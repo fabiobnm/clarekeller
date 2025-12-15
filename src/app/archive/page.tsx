@@ -23,8 +23,10 @@ export default async function Page() {
       <main >
        <Menu/>
        <div  className='animationOpacity' style={{position:'absolute', top:'400px', display:'flex'}}>
-        <div style={{ position:'fixed', left:0, right:0, paddingLeft:0 , width:'100vW', textAlign:'center', whiteSpace:'nowrap'}}>
-           <h1>COMING SOON</h1>
+        <div style={{ position:'fixed', left:0, right:0, paddingLeft:0 , width:'100vW', textAlign:'center', whiteSpace:'nowrap',fontSize:'12px'}}>
+           COMING SOON <br />
+           want you to be notified?  <br />
+           <a className='subscribeArchive' href="/subscribe">Subscribe →</a>
 </div>
 
     

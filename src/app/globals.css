@@ -46,6 +46,11 @@ p{
   font-size: 12px;
 }
 
+.subscribeArchive:hover{
+text-decoration: underline;
+}
+
+
 .FabioMenu {
   position: relative;
   display: flex;
@@ -847,7 +852,8 @@ opacity: 0;
 }
 .divMenuRight {
     position: relative;
-  
+    font-size: 14px;
+    line-height: 1.6;
     text-align: start;
 }
   body{
