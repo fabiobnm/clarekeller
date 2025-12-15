@@ -100,6 +100,16 @@
   .swapText:hover {
     all: revert-layer;
   }
+  .swapText::after {
+  content: attr(data-hover);
+  position: absolute;
+  left: 15px !important;
+  top: 61px !important;
+  opacity: 0;
+  color: rgba(255, 255, 255, 0);
+  transition: opacity 0.2s ease;
+  white-space: nowrap;
+}
 }
 
 /* Base: in home tutte le voci a 1 */
