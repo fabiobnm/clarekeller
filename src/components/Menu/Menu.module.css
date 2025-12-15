@@ -96,6 +96,10 @@
   padding-top: 4vW;
   transition: top 0.3s ease;
 }
+
+  .swapText:hover {
+    all: revert-layer;
+  }
 }
 
 /* Base: in home tutte le voci a 1 */

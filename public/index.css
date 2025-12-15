@@ -248,4 +248,8 @@
   max-height: 100dvh;
 }
 
+#ArcNo:hover{
+  all: revert-layer;
+}
+
     }
