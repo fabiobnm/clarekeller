@@ -247,14 +247,14 @@ transition: .2s all;
 
 .divMenu{
   width: 16.66%;
-  font-size: 12px;
+  font-size: 13px;
   opacity: 0;
    animation: opacityAnimation .4s ease-out .3s forwards;
 }
 .divMenuRight{
   position: absolute;
   right: 15px;
-font-size: 12px;
+font-size: 13px;
 opacity: 0;
  animation: opacityAnimation .4s ease-out .3s forwards;
 }

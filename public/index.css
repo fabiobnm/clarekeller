@@ -50,7 +50,7 @@
       top: 40vh;
       top: 40dvh;
       transform-origin: top;
-      transition: top 2s;
+      transition: top 2.5s;
 
     }
 
@@ -76,7 +76,7 @@
 
     .divMenu {
       width: 16.66%;
-      font-size: 12px;
+      font-size: 13px;
       opacity: 1;
     }
 
@@ -87,7 +87,7 @@
     .divMenuRight {
       position: absolute;
       right: 0;
-      font-size: 12px;
+      font-size: 13px;
       text-align: end;
     }
 
@@ -105,7 +105,7 @@
       padding-bottom: 5px;
       overflow-x: auto;
       overscroll-behavior-x: auto;
-      animation: inlineGap .9s ease-out 0.2s forwards;
+      animation: inlineGap 1.4s ease-out 0.2s forwards;
     }
 
     @keyframes inlineGap {
@@ -152,7 +152,7 @@
         opacityIndex .9s ease-out 0.2s forwards;
       transform-origin: top;
       filter: none;
-      transition: filter 0.3s ease, height 2s;
+      transition: filter 0.3s ease, height 2.5s;
     }
     @keyframes TallIndex {
     
@@ -176,7 +176,7 @@
       transition: .3s;
       transition-delay: .6s;
       opacity: 0;
-      animation: opacityAnimation .4s ease-out 3s forwards;
+      animation: opacityAnimation .4s ease-out 3.5s forwards;
     }
 
     @keyframes opacityAnimation {
@@ -250,6 +250,12 @@
 
 #ArcNo:hover{
   all: revert-layer;
+  font-family: 'Ufficio600';
 }
 
     }
+
+
+    #ArcNo:hover{
+  all: revert-layer;
+}
