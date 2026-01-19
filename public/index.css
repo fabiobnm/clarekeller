@@ -164,6 +164,7 @@
 
     .socials {
       top: 57vH;
+      top: 57dvh;
       width: 100%;
       position: fixed;
       display: flex;
