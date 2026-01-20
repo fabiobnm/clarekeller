@@ -6,6 +6,9 @@ import NewsletterForm from '@/components/NewsletterForm/NewsletterForm';
 import Footer from '@/components/Footer/Footer';
 
 
+export const dynamic='force-static';
+export const revalidate= 0;
+
 
 
 

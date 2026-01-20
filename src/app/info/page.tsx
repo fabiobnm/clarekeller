@@ -9,6 +9,9 @@ import {
   type ExternalLink,
 } from '@/lib/queries/info';
 
+export const dynamic='force-static';
+export const revalidate= 0;
+
 export default async function Page() {
   // ATTENZIONE: INFO_PAGE_QUERY deve avere gli alias:
   // linksList: links { ... }  e  linksList2: link2 { ... }
