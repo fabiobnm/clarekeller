@@ -76,7 +76,7 @@
 
     .divMenu {
       width: 16.66%;
-      font-size: 13px;
+      font-size: 14px;
       opacity: 1;
     }
 
@@ -87,7 +87,7 @@
     .divMenuRight {
       position: absolute;
       right: 0;
-      font-size: 13px;
+      font-size: 14px;
       text-align: end;
     }
 

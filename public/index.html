@@ -112,7 +112,7 @@ const rows = document.querySelectorAll('.row');
         const images = home.images || [];
         row.innerHTML = "";
         const fragment = document.createDocumentFragment();
-        for (let repeat = 0; repeat < 17; repeat++) {
+        for (let repeat = 0; repeat < 16; repeat++) {
           images.forEach((imgObj) => {
             if (!imgObj || !imgObj.url) return;
             const img = document.createElement("img");
