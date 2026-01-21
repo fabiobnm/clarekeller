@@ -21,7 +21,7 @@
   will-change: transform;
 }
 .nudgeUp {
-  transform: translateY(calc(-200px - 15px)); /* richiesta: sale di 4vh */
+  transform: translateY(calc(var(--menu-height) * -1)); /* richiesta: sale di 4vh */
 }
 
 /* Logo */

@@ -1,10 +1,11 @@
 // src/components/Menu/MenuClient.tsx
 'use client';
 
-import { useEffect, useState, useRef, MouseEvent } from 'react';
+import { useEffect, useState, useRef, MouseEvent, useLayoutEffect } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
 import styles from './Menu.module.css';
+import { log } from 'console';
 
 type Home = {
   logoDesktop?: { url?: string | null } | null;
@@ -29,9 +30,30 @@ export default function MenuClient({
   const [nudgeUp, setNudgeUp] = useState(false); // ← scroll nudge
   const router = useRouter();
   const pathname = usePathname();
+  const menuRef = useRef<HTMLDivElement | null>(null);
+  const [menuHeight, setMenuHeight] = useState<number>(0);
 
   // memorizza l'ultima posizione scroll per capire la direzione
   const lastYRef = useRef(0);
+
+
+  useLayoutEffect(() => {
+  if (!menuRef.current) return;
+
+  const measure = () => {
+    setMenuHeight(menuRef.current!.offsetHeight);
+    console.log('height'+menuRef.current!.offsetHeight);
+    
+  };
+
+  measure();
+
+  // ricalcola su resize (fondamentale)
+  window.addEventListener('resize', measure);
+  return () => window.removeEventListener('resize', measure);
+}, []);
+
+
 
   // Animazione entrata
   useEffect(() => {
@@ -101,6 +123,12 @@ export default function MenuClient({
   return (
     <div
        id='menuTotale'
+       ref={menuRef}
+        style={
+    {
+      '--menu-height': `${menuHeight}px`,
+    } as React.CSSProperties
+  }
       className={[
         styles.menuWrapper,
         enter ? styles.enter : '',
@@ -110,7 +138,7 @@ export default function MenuClient({
       ].join(' ')}
     >
       {/* Nudge wrapper: muove TUTTO (logo + voci) di -4vh in scroll up */}
-      <div  style={{background:'white',paddingTop: '10px', borderBottom:'0px solid white'}}  className={`${styles.nudge} ${nudgeUp ? styles.nudgeUp : ''}`}>
+      <div  style={{background:'white',paddingTop: '10px', borderBottom:'0px solid white'}} className={`${styles.nudge} ${nudgeUp ? styles.nudgeUp : ''}`}>
         {logoToShow && (
           isHome ? (
             // In home: logo non cliccabile
