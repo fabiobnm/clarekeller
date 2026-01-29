@@ -17,8 +17,8 @@ export default async function MenuServer({ page = 'default', itemBasis = '16.66%
   
   return (
     <div>
- {/* <img className='logoFooter' src={logoUrl}  /> */}    
-  <div className='footerLink' style={{ position:'fixed',paddingInline:15, fontSize:'.7em', width:'100vW'}}> {/* qui position era relative*/}
+ {/* <img className='logoFooter' src={logoUrl}  /> */}
+  <div className='footerLink' style={{ position:'relative',paddingInline:15, fontSize:'.7em'}}>
        <a style={{marginRight:'10px'}} href={home.instagram}  target="_blank"
   rel="noopener noreferrer">INSTAGRAM</a>
        <a style={{marginRight:'10px'}} href={home.youtube}  target="_blank"
