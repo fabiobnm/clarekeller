@@ -38,7 +38,7 @@ export default function SubscribeToggle({ markdown }: Props) {
 
       {/* SUBSCRIBE BOX */}
       <div
-        className="subscribeBox"
+        className="subscribeBoxIndex"
         style={{
           maxHeight: open ? "600px" : "0px",
           opacity: open ? 1 : 0,

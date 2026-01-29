@@ -29,12 +29,12 @@ export default async function Page() {
 
 
   return (
-    <div style={{background:'#21040e', height:'100vH', color:'#e6f5ff'}}>
+    <div style={{ color:'#e6f5ff'}}>
       <main >
-        
-       <div className='animationOpacity mainSubscribeDiv'  style={{display:'block', top: 'calc(50vH)'}}>
 
-        <img style={{width:'50vW', marginLeft:'50vW', transform:'translateX(-50%)'}} src="/logoBabyBlue.svg" alt="" />
+       <div className='animationOpacity mainSubscribeDiv topSubExtra'>
+
+        <img    style={{width:'50vW', marginLeft:'50vW', transform:'translateX(-50%)'}} src="/logoBabyBlue.svg" alt="" />
 
        <SubscribeToggle markdown={subscribe.text?.markdown ?? ""} />
 

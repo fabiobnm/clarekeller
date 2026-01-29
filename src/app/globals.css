@@ -1,11 +1,11 @@
 :root {
-  --background: #ffffff;
+  --background: #21040e;
   --foreground: #171717;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: white;
+    --background: #21040e;
     --foreground: black;
   }
 }
@@ -41,6 +41,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.subLogoMobile{
+  display: none;
+}
+.subLogoDesktop{
+  display: block;
+}
 
 p{
   font-size: 14px;
@@ -65,6 +71,12 @@ text-decoration: underline;
 }
 
 .subscribeBox{
+  margin-left: 0;
+    text-align: center;
+    width: 100vW;
+    padding-inline: calc(16.66% + 15px);
+}
+.subscribeBoxIndex{
   margin-left: 0;
     text-align: center;
     width: 100vW;
@@ -327,7 +339,10 @@ a {
 transition: .8s all;
 object-fit: cover;
 }
-
+.topSubExtra{
+  display: block;
+    top: calc(50vH);
+}
 
 .imgHomeNewNew{
   object-fit: cover;
@@ -506,9 +521,9 @@ p, .infoLink, .divMenu, .divMenuRight{
     margin-inline: auto;
     margin-top: 30px;
 }
-
+/*  questo è non sul sito reale */
 .footerSubs{
-display: none;
+display: block;
 }
 
 .subscribeBox{
@@ -517,10 +532,29 @@ display: none;
     width: 100vW;
     padding-inline: 15px;
 }
+.subscribeBoxIndex{
+margin-left: 0;
+    text-align: center;
+    width: 100vW;
+    padding-inline: 15px;
+}
 .subscribeBox .labelInput{
 text-align: center;
 }
+.subscribeBoxIndex .labelInput{
+text-align: center;
+}
 
+.subscribeBoxIndex p{
+  margin-bottom: 0px;
+}
+
+.subLogoMobile{
+  display: block;
+}
+.subLogoDesktop{
+  display: none;
+}
 
 .mainSubscribeDiv {
     position: absolute;
@@ -548,6 +582,11 @@ text-align: center;
 
 .carouselItem{
   width: 80vW;
+}
+
+.topSubExtra{
+  display: block;
+    top: calc(36vH);
 }
 
 .carouselItem:hover {
