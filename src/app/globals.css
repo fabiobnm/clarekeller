@@ -104,6 +104,7 @@ text-decoration: underline;
 .inputFormSubsIndex{
     background-color: #21040e;
   border: none;
+  border-radius: 0;
   color: #e6f5ff;;
   border-bottom: 1px solid #e6f5ff;;
   padding-inline: 0 !important;
