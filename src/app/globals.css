@@ -118,6 +118,11 @@ text-decoration: underline;
 }
 
 
+.footerLink{
+  bottom:1vW;
+  bottom:1dvW
+
+}
 
    .footerLink a {
       cursor:pointer;
