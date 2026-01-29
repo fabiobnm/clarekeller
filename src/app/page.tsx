@@ -39,7 +39,9 @@ export default async function Page() {
        <SubscribeToggle markdown={subscribe.text?.markdown ?? ""} />
 
       </div>
-     
+      <div className='footerSubs slide-in-topSUBSCRIBE'>
+        <Footer />
+      </div>
 
       </main>
     </div>
