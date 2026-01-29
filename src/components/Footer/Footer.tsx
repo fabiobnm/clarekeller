@@ -23,7 +23,7 @@ export default async function MenuServer({ page = 'default', itemBasis = '16.66%
        <a style={{marginRight:'10px'}} href={home.youtube}>YOUTUBE</a>
    
 
-        <a style={{position:'absolute', right:'15px'}}>{home.copyright}</a>
+        <a style={{position:'absolute', right:'15px'}}>©{new Date().getFullYear()} Clare Waight Keller</a>
         </div>
         </div>
   );

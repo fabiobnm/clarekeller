@@ -89,6 +89,15 @@ text-decoration: underline;
   text-align: center;
 
 }
+.inputFormSubsIndex{
+    background-color: #21040e;
+  border: none;
+  color: #e6f5ff;;
+  border-bottom: 1px solid #e6f5ff;;
+  padding-inline: 0 !important;
+  font-family: 'Ufficio600' !important;
+  text-align: center;
+}
 
 .footerSubs{
   position: absolute;
@@ -102,6 +111,7 @@ text-decoration: underline;
       cursor:pointer;
   opacity: 1;
   transition: opacity 0.4s ease;
+  color:#e6f5ff
 }
 
 /* quando qualunque <a> è in hover → tutti a .2 */
@@ -134,6 +144,21 @@ input::placeholder{
     padding: 2px 18px;
     background: black;
     color: white;
+    width: 100%;
+    border: none;
+    margin-top: 0px;
+    border-radius: 50px;
+    margin-left: auto;
+    text-align: right;
+    font-size: 14px;
+
+}
+
+.submitFormSubsIndex{
+    font-family: 'Ufficio600' !important;
+    padding: 2px 18px;
+    background: #e6f5ff;
+    color: #21040e;
     width: 100%;
     border: none;
     margin-top: 0px;
