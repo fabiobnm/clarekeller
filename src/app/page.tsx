@@ -32,9 +32,9 @@ export default async function Page() {
     <div style={{ color:'#e6f5ff'}}>
       <main >
 
-       <div className='animationOpacity mainSubscribeDiv topSubExtra'>
+       <div className='animationOpacity mainSubscribeDiv'  style={{display:'block'}}>
 
-        <img    style={{width:'50vW', marginLeft:'50vW', transform:'translateX(-50%)'}} src="/logoBabyBlue.svg" alt="" />
+        <img className='logoXSubIndex' src="/logoBabyBlue.svg" alt="" />
 
        <SubscribeToggle markdown={subscribe.text?.markdown ?? ""} />
 

@@ -156,6 +156,12 @@ input::placeholder{
   text-align: center;
 }
 
+.logoXSubIndex{
+  width: 50vW;
+    margin-left: 50vW;
+    transform: translateX(-50%);
+}
+
 .submitFormSubs{
     font-family: 'Ufficio600' !important;
     padding: 2px 18px;
@@ -188,8 +194,9 @@ input::placeholder{
 
 .mainSubscribeDiv{
   position: absolute;
-    display: flex;
-    top: calc( 50vH + 50px);
+   display: block; /* da rimettere flex*/
+    color:#e6f5ff;
+    top: calc( 50vH);
     transform: translateY(-50%);
 }
 
@@ -531,6 +538,12 @@ p, .infoLink, .divMenu, .divMenuRight{
 display: block;
 }
 
+.logoXSubIndex{
+  width: 66vW;
+    margin-left: 17vW;
+    transform: translateX(0%);
+}
+
 .subscribeBox{
   margin-left: 0;
     text-align: left;
@@ -563,10 +576,8 @@ text-align: center;
 
 .mainSubscribeDiv {
     position: absolute;
-    display: flex;
-    top: auto;
-    bottom: 15px;
-    transform: translateY(0%);
+    display: block; /* da rimettere flex*/
+ 
 }
 
  .FabioMenu {

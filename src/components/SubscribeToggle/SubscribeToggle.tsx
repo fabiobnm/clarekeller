@@ -31,7 +31,7 @@ export default function SubscribeToggle({ markdown }: Props) {
             onClick={() => setOpen(true)}
            style={{width:'200px', marginTop:'45px'}}
           >
-           {'Subscribe now\u2192'}
+           {'Subscribe now \u2192'}
           </button>
         </div>
       </div>
